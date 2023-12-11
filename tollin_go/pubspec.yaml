@@ -90,13 +90,14 @@ flutter:
         - asset: fonts/GreatVibes-Regular.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
-    - family: PatrickHand
+    - family: OriginalSurfer
       fonts:
-        - asset: fonts/PatrickHand-Regular.ttf
+        - asset: fonts/OriginalSurfer-Regular.ttf
 
-    - family: TitanOne
+    - family: OleoScriptSwashCaps
       fonts:
-        - asset: fonts/TitanOne-Regular.ttf
+        - asset: fonts/OleoScriptSwashCaps-Bold.ttf
+        - asset: fonts/OleoScriptSwashCaps-Regular.ttf
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
