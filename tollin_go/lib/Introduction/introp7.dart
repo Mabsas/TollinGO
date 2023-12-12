@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-
-//About Scan Payment
+//About Tracking
 
 // ignore: camel_case_types
-class intropage3 extends StatelessWidget {
-  const intropage3({super.key});
+class intropage7 extends StatelessWidget {
+  const intropage7({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,32 +13,31 @@ class intropage3 extends StatelessWidget {
       decoration: const BoxDecoration(
           //inserting background image
           image: DecorationImage(
-              image: AssetImage('assets/intro/intro3.jpg'), fit: BoxFit.cover)),
+              image: AssetImage('assets/intro/intro9.jpg'),
+              fit: BoxFit.cover)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-
-          const Text('Scan and pay',textAlign:TextAlign.start,style: TextStyle(fontSize:70,fontFamily:'OriginalSurfer'),textDirection: TextDirection.ltr),
+          
 
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              'Say goodbye to the hassle of multiple steps! Our scan option empowers you to finish your transaction seamlessly in just one go, making it a breeze.',
-              textAlign: TextAlign.start,
+              'Let''s Get Started!!!',
+              textAlign: TextAlign.center,
               textDirection: TextDirection.ltr,
               //textHeightBehavior: TextHeightBehavior(),
-              style: TextStyle(fontSize: 20,fontFamily:'OleoScriptSwashCaps-Regular'),
+              style: TextStyle(
+                  fontSize: 100, fontFamily: 'Inspiration'),
             ),
           ),
 
-
-
           // inserting animation
-          Lottie.asset('assets/intro_animations/Animation2.json',
-              height: 400,
+          Lottie.asset('assets/intro_animations/Animation9.json',
+              height: 300,
               alignment: Alignment.center,
               repeat: true,
-              reverse: true,
+              //reverse: true,
               fit: BoxFit.cover),
         ],
       ),

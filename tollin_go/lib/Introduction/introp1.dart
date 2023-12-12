@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+// About TollinGo
 
 // ignore: camel_case_types
 class intropage1 extends StatelessWidget {
