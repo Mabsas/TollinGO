@@ -13,7 +13,7 @@ class intropage7 extends StatelessWidget {
       decoration: const BoxDecoration(
           //inserting background image
           image: DecorationImage(
-              image: AssetImage('assets/intro/intro9.jpg'),
+              image: AssetImage('assets/intro/intro4.jpg'),
               fit: BoxFit.cover)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -23,7 +23,7 @@ class intropage7 extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              'Let''s Get Started!!!',
+              'Let''s Get Started With TollinGo!!!',
               textAlign: TextAlign.center,
               textDirection: TextDirection.ltr,
               //textHeightBehavior: TextHeightBehavior(),

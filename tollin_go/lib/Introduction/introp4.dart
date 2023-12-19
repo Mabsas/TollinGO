@@ -15,7 +15,7 @@ class intropage4 extends StatelessWidget {
       decoration: const BoxDecoration(
           //inserting background image
           image: DecorationImage(
-              image: AssetImage('assets/intro/intro7.jpg'), fit: BoxFit.cover)),
+              image: AssetImage('assets/intro/intro1.jpg'), fit: BoxFit.cover)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -37,7 +37,7 @@ class intropage4 extends StatelessWidget {
 
           // inserting animation
           Lottie.asset('assets/intro_animations/Animation8.json',
-              height: 300,
+              height: 400,
               alignment: Alignment.center,
               repeat: true,
               reverse: true,

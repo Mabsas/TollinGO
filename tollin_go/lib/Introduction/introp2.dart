@@ -14,7 +14,7 @@ class intropage2 extends StatelessWidget {
       decoration: const BoxDecoration(
           //inserting background image
           image: DecorationImage(
-              image: AssetImage('assets/intro/intro4.jpg'), fit: BoxFit.cover)),
+              image: AssetImage('assets/intro/intro7.jpg'), fit: BoxFit.cover)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [

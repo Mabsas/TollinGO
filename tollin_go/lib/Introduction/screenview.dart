@@ -19,8 +19,7 @@ class screenview extends StatefulWidget {
 // ignore: camel_case_types
 class _screenviewState extends State<screenview> {
   // indicator of which page we are on
-  final PageController _controller = PageController();
-
+  final PageController _pagecontroller = PageController();
 
   bool onLastPage = false;
   // keeping last page record
@@ -30,17 +29,11 @@ class _screenviewState extends State<screenview> {
       body: Stack(
         children: [
           PageView(
-              controller: _controller,
+              controller: _pagecontroller,
               onPageChanged: (index) {
                 //keeping track of page number
                 setState(() {
-                  for (index = 0; index <=7; index++) {
-                    if (index == 1) {
-                      onLastPage = true;
-                    } else {
-                      onLastPage = false;
-                    }
-                  }
+                  onLastPage = (index == 7);
                 });
               },
               children: const [
@@ -63,22 +56,22 @@ class _screenviewState extends State<screenview> {
                 GestureDetector(
                   //(:=else) baki khetre fasle so skip thakbe
                   onTap: () {
-                    _controller.jumpToPage(7);
+                    _pagecontroller.jumpToPage(7);
                   },
                   child: const Text('Skip'),
                 ),
 
                 // for dot button
-                SmoothPageIndicator(controller: _controller, count: 7),
+                SmoothPageIndicator(controller: _pagecontroller, count: 7),
 
                 // For last Page Proceed
                 onLastPage
                     ? GestureDetector(
                         //(?=if)  onlastpage true hoi then ei case
                         onTap: () {
-                          _controller.nextPage(
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.easeIn);
+                          _pagecontroller.nextPage(
+                              duration: const Duration(milliseconds: 600),
+                              curve: Curves.easeOut);
                         },
                         child: const Text('Proceed'),
                       )
@@ -87,9 +80,9 @@ class _screenviewState extends State<screenview> {
                     : GestureDetector(
                         // (: = else) onlastpage false hoi ei case
                         onTap: () {
-                          _controller.nextPage(
+                          _pagecontroller.nextPage(
                               duration: const Duration(milliseconds: 500),
-                              curve: Curves.easeIn);
+                              curve: Curves.easeOut);
                         },
                         child: const Text('Next'),
                       ),

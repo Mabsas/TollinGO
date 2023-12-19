@@ -13,7 +13,7 @@ class intropage6 extends StatelessWidget {
       decoration: const BoxDecoration(
           //inserting background image
           image: DecorationImage(
-              image: AssetImage('assets/intro/intro18.jpg'),
+              image: AssetImage('assets/intro/intro3.jpg'),
               fit: BoxFit.cover)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,

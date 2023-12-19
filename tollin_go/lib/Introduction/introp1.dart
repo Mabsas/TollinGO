@@ -27,10 +27,10 @@ class intropage1 extends StatelessWidget {
               fit: BoxFit.cover),
 
               //For app name
-              const Text('TollinGo',textAlign:TextAlign.end,style: TextStyle(fontSize:100,fontFamily:'Inspiration'),),
+              /*const Text('TollinGo',textAlign:TextAlign.end,style: TextStyle(fontSize:100,fontFamily:'Inspiration'),),*/
 
               //for the last sentence 
-             const  Padding(padding: EdgeInsets.symmetric(horizontal: 20),child: Text('Effortlessly clear tolls in an instant making every journey smooth like a BUTTER.......',textAlign:TextAlign.end,style: TextStyle(fontSize:20,fontFamily:'PatrinckHand'),), ),
+             const  Padding(padding: EdgeInsets.symmetric(horizontal: 20),child: Text('Effortlessly clear tolls in an instant making every journey smooth.......',textAlign:TextAlign.end,style: TextStyle(fontSize:30,fontFamily:'PatrinckHand'),), ),
 
         ],
       ),
