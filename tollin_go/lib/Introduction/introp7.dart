@@ -28,7 +28,7 @@ class intropage7 extends StatelessWidget {
               textDirection: TextDirection.ltr,
               //textHeightBehavior: TextHeightBehavior(),
               style: TextStyle(
-                  fontSize: 100, fontFamily: 'Inspiration'),
+                  fontSize: 70, fontFamily: 'OriginalSurfer'),
             ),
           ),
 
