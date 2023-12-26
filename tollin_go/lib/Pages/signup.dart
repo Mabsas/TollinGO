@@ -14,17 +14,26 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   String email = "", password = "", name = "";
-  TextEditingController namecontroller = new TextEditingController();
+
+  // for getting the data that user is giving through this controller
+  TextEditingController namecontroller = new TextEditingController();  
   TextEditingController passwordcontroller = new TextEditingController();
   TextEditingController mailcontroller = new TextEditingController();
 
+  /* Validity check kore of the contents of the form. It helps in checking if the user has filled out the required information (name, email, password) before allowing any action, like submitting the form.*/
+
   final _formkey = GlobalKey<FormState>();
 
+  // execution of signupbutton
   registration() async {
     if (password != null) {
       try {
-        UserCredential userCredential = await FirebaseAuth.instance
+
+        //represents the user info that has just been registered
+        UserCredential userCredential = await FirebaseAuth.instance 
             .createUserWithEmailAndPassword(email: email, password: password);
+
+  //Snackbar use kore to show popup message ta jeta user dekhbe & scaffold messenger is the widget that provides that facility
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             backgroundColor: Colors.redAccent,
             content: Text(
@@ -32,6 +41,9 @@ class _SignUpState extends State<SignUp> {
               style: TextStyle(fontSize: 20.0),
             )));
         // ignore: use_build_context_synchronously
+        //Navigator.push use kore for moving from one page to another
+        /*
+ e.code refer kore the error code related to FirebaseAuthException that is caught in the catch block. The FirebaseAuthException is an exception class provided by the Firebase Authentication library for Dart/Flutter.*/
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const Home()));
       } on FirebaseAuthException catch (e) {
@@ -57,15 +69,15 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF283793),
+      backgroundColor: const Color.fromRGBO(40, 55, 147, 1),
       body: SingleChildScrollView(
         child: Container(
-          child: Form(
+          child: Form(                  //validity of users info
             key: _formkey,
             child: Column(
               children: [
                 Container(
-                  margin: const EdgeInsets.only(top: 130.0, left: 20.0, right: 20.0),
+                  margin: const EdgeInsets.only(top: 120.0, left: 20.0, right: 20.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -81,9 +93,9 @@ class _SignUpState extends State<SignUp> {
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 3.0, horizontal: 5.0),
+                            vertical: 5.0, horizontal: 5.0),
                         decoration: BoxDecoration(
-                            color: const Color(0xFF4c59a5),
+                            color: const Color.fromRGBO(76, 89, 165, 1),
                             borderRadius: BorderRadius.circular(30)),
                         child: TextFormField(
                           controller: namecontroller,
@@ -101,7 +113,7 @@ class _SignUpState extends State<SignUp> {
                               ),
                               hintText: 'Your Name',
                               hintStyle: TextStyle(color: Colors.white60)),
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white), //written by user text color
                         ),
                       ),
                       const SizedBox(
@@ -109,9 +121,9 @@ class _SignUpState extends State<SignUp> {
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 3.0, horizontal: 5.0),
+                            vertical: 5.0, horizontal: 5.0),
                         decoration: BoxDecoration(
-                            color: const Color(0xFF4c59a5),
+                            color: const Color.fromRGBO(76, 89, 165, 1),
                             borderRadius: BorderRadius.circular(30)),
                         child: TextFormField(
                           controller: mailcontroller,
@@ -137,9 +149,9 @@ class _SignUpState extends State<SignUp> {
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 3.0, horizontal: 5.0),
+                            vertical: 5.0, horizontal: 5.0),
                         decoration: BoxDecoration(
-                            color: const Color(0xFF4c59a5),
+                            color: const Color.fromRGBO(76, 89, 165, 1),
                             borderRadius: BorderRadius.circular(30)),
                         child: TextFormField(
                           obscureText: true,
@@ -182,7 +194,7 @@ class _SignUpState extends State<SignUp> {
                             height: 55,
                             padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                                color: const Color(0xFFf95f3b),
+                                color: const Color.fromRGBO(249, 95, 59, 1),
                                 borderRadius: BorderRadius.circular(30)),
                             child: const Center(
                                 child: Text(
@@ -198,6 +210,9 @@ class _SignUpState extends State<SignUp> {
                     ],
                   ),
                 ),
+
+
+                /*This line sets the height of the SizedBox to one-sixth (1/6) of the device's screen height. The MediaQuery.of(context).size.height gets the total height of the device's screen, and dividing it by 6 provides a fraction of that height.*/
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 6,
                 ),
@@ -225,7 +240,7 @@ class _SignUpState extends State<SignUp> {
                         child: const Text(
                           " Login",
                           style: TextStyle(
-                              color: Color(0xFFf95f3b),
+                              color: Color.fromRGBO(249, 95, 59, 1),
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold),
                         )),

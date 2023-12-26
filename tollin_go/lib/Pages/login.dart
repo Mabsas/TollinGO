@@ -48,7 +48,7 @@ class _LogInState extends State<LogIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF283793),
+      backgroundColor: const Color.fromRGBO(40, 55, 147, 1),
       body: SingleChildScrollView(
         child: Container(
           child: Form(
@@ -79,7 +79,7 @@ class _LogInState extends State<LogIn> {
                   padding: const EdgeInsets.symmetric(vertical: 3.0),
                   margin: const EdgeInsets.symmetric(horizontal: 20.0),
                   decoration: BoxDecoration(
-                      color: const Color(0xFF4c59a5),
+                      color: const Color.fromRGBO(76, 89, 165, 1),
                       borderRadius: BorderRadius.circular(22)),
                   child: TextFormField(
                     controller:  useremailcontroller,
