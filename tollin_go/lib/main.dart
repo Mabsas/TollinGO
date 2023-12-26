@@ -1,21 +1,27 @@
+
 import 'package:flutter/material.dart';
+import 'package:tollin_go/Introduction/screenview.dart';
+import 'package:tollin_go/Pages/signup.dart';
 import 'Introduction/screenview.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(const MyApp());
+
+import 'dart:io';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Platform.isAndroid
+      ? await Firebase.initializeApp(
+          options: const FirebaseOptions(
+              apiKey: "AIzaSyDaBuAMW1Nw19jfRMpvwRSZyrXoV5yxz6w",
+              appId: "1:907270160676:android:c2f3293b3fedb3a4bdf3b1",
+              messagingSenderId: "907270160676",
+              projectId: "tollingo-85e82"),
+        )
+      : await Firebase.initializeApp();
+  runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home:screenview(),
+  ));
 }
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: screenview(),
-   
-    );
-  }
-}
-

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "907270160676",
+    "project_id": "tollingo-85e82",
+    "storage_bucket": "tollingo-85e82.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907270160676:android:c2f3293b3fedb3a4bdf3b1",
+        "android_client_info": {
+          "package_name": "com.example.tollin_go"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaBuAMW1Nw19jfRMpvwRSZyrXoV5yxz6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

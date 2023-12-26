@@ -5,9 +5,15 @@ import 'package:lottie/lottie.dart';
 //About Scan Payment
 
 // ignore: camel_case_types
-class intropage3 extends StatelessWidget {
+class intropage3 extends StatefulWidget {
   const intropage3({super.key});
 
+  @override
+  State<intropage3> createState() => _intropage3State();
+}
+
+// ignore: camel_case_types
+class _intropage3State extends State<intropage3> {
   @override
   Widget build(BuildContext context) {
     return Container(

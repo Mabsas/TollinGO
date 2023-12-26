@@ -4,9 +4,15 @@ import 'package:lottie/lottie.dart';
 // About TollinGo
 
 // ignore: camel_case_types
-class intropage1 extends StatelessWidget {
+class intropage1 extends StatefulWidget {
   const intropage1({super.key});
 
+  @override
+  State<intropage1> createState() => _intropage1State();
+}
+
+// ignore: camel_case_types
+class _intropage1State extends State<intropage1> {
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -4,9 +4,15 @@ import 'package:lottie/lottie.dart';
 //About Tracking
 
 // ignore: camel_case_types
-class intropage7 extends StatelessWidget {
+class intropage7 extends StatefulWidget {
   const intropage7({super.key});
 
+  @override
+  State<intropage7> createState() => _intropage7State();
+}
+
+// ignore: camel_case_types
+class _intropage7State extends State<intropage7> {
   @override
   Widget build(BuildContext context) {
     return Container(
