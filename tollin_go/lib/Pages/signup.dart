@@ -35,7 +35,7 @@ class _SignUpState extends State<SignUp> {
 
   //Snackbar use kore to show popup message ta jeta user dekhbe & scaffold messenger is the widget that provides that facility
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            backgroundColor: Colors.redAccent,
+            backgroundColor: Color.fromARGB(255, 82, 245, 57),
             content: Text(
               "Registered Successfully",
               style: TextStyle(fontSize: 20.0),
@@ -49,14 +49,14 @@ class _SignUpState extends State<SignUp> {
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              backgroundColor: Colors.orangeAccent,
+              backgroundColor: Color.fromARGB(255, 244, 182, 75),
               content: Text(
                 "Password Provided is too Weak",
                 style: TextStyle(fontSize: 18.0),
               )));
         } else if (e.code == "email-already-in-use") {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              backgroundColor: Colors.orangeAccent,
+              backgroundColor: Color.fromARGB(255, 244, 182, 75),
               content: Text(
                 "Account Already exists",
                 style: TextStyle(fontSize: 18.0),
