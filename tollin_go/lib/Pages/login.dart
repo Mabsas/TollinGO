@@ -16,17 +16,19 @@ class LogIn extends StatefulWidget {
 class _LogInState extends State<LogIn> {
   String email = "", password = "";
 
-  final _formkey= GlobalKey<FormState>();
+  final _formkey = GlobalKey<FormState>();
 
-  TextEditingController useremailcontroller = new TextEditingController();
-  TextEditingController userpasswordcontroller = new TextEditingController();
+  TextEditingController useremailcontroller = TextEditingController();
+  TextEditingController userpasswordcontroller = TextEditingController();
+  TextEditingController confirmuserpasswordcontroller = TextEditingController();
 
   userLogin() async {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
 
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const Home()));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -82,11 +84,12 @@ class _LogInState extends State<LogIn> {
                       color: const Color.fromRGBO(76, 89, 165, 1),
                       borderRadius: BorderRadius.circular(22)),
                   child: TextFormField(
-                    controller:  useremailcontroller,
-                    validator: (value){
-                      if(value==null|| value.isEmpty){
+                    showCursor: true,
+                    cursorColor: Colors.black,
+                    controller: useremailcontroller,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
                         return 'Please Enter E-Mail';
-
                       }
                       return null;
                     },
@@ -97,7 +100,7 @@ class _LogInState extends State<LogIn> {
                           color: Colors.white,
                         ),
                         hintText: 'Your Email',
-                        hintStyle: TextStyle(color: Colors.white60)),
+                        hintStyle: TextStyle(color: Colors.white60),errorStyle:TextStyle(color: Colors.yellow)),
                     style: const TextStyle(color: Colors.white),
                   ),
                 ),
@@ -111,11 +114,12 @@ class _LogInState extends State<LogIn> {
                       color: const Color(0xFF4c59a5),
                       borderRadius: BorderRadius.circular(22)),
                   child: TextFormField(
-                       controller: userpasswordcontroller,
-                    validator: (value){
-                      if(value==null|| value.isEmpty){
+                    showCursor: true,
+                    cursorColor: Colors.black,
+                    controller: userpasswordcontroller,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
                         return 'Please Enter Password';
-
                       }
                       return null;
                     },
@@ -126,7 +130,7 @@ class _LogInState extends State<LogIn> {
                           color: Colors.white,
                         ),
                         hintText: 'Password',
-                        hintStyle: TextStyle(color: Colors.white60)),
+                        hintStyle: TextStyle(color: Colors.white60),errorStyle: TextStyle(color: Colors.yellow),),
                     style: const TextStyle(color: Colors.white),
                     obscureText: true,
                   ),
@@ -135,8 +139,11 @@ class _LogInState extends State<LogIn> {
                   height: 15.0,
                 ),
                 GestureDetector(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const ForgotPassword()));
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ForgotPassword()));
                   },
                   child: Container(
                     padding: const EdgeInsets.only(right: 24.0),
@@ -152,10 +159,25 @@ class _LogInState extends State<LogIn> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    if(_formkey.currentState!.validate()){
+                    if (_formkey.currentState!.validate()) {
+                      // Check if passwords match
+                      if (userpasswordcontroller.text !=
+                          confirmuserpasswordcontroller.text) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          backgroundColor: Color.fromARGB(255, 246, 29, 14),
+                          content: Text(
+                            "Incorrect email or password!",
+                            style:
+                                TextStyle(fontSize: 18.0, color: Colors.white),
+                          ),
+                        ));
+                        return; // Stop the login process if passwords don't match
+                      }
+
                       setState(() {
-                        email= useremailcontroller.text;
-                        password= userpasswordcontroller.text;
+                        email = useremailcontroller.text;
+                        password = userpasswordcontroller.text;
                       });
                     }
                     userLogin();
@@ -194,8 +216,10 @@ class _LogInState extends State<LogIn> {
                     ),
                     GestureDetector(
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => const SignUp()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SignUp()));
                         },
                         child: const Text(
                           " Signup",
