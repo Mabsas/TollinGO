@@ -2,6 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:tollin_go/Feature/paid.dart';
+import 'package:tollin_go/Feature/scan.dart';
+import 'package:tollin_go/Introduction/screenview.dart';
 import 'package:tollin_go/Introduction/splash.dart';
 import 'dart:io';
 import 'package:tollin_go/Pages/Home.dart';
@@ -21,6 +24,6 @@ void main() async {
       : await Firebase.initializeApp();
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
-    home:Splash(),
+    home:Home(),
   ));
 }

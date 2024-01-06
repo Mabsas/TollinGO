@@ -9,7 +9,6 @@ import 'package:tollin_go/Introduction/introp6.dart';
 import 'package:tollin_go/Introduction/introp7.dart';
 import 'package:tollin_go/Pages/signup.dart';
 
-
 // ignore: camel_case_types
 class screenview extends StatefulWidget {
   const screenview({super.key});
@@ -22,6 +21,7 @@ class screenview extends StatefulWidget {
 class _screenviewState extends State<screenview> {
   // indicator of which page we are on
   final PageController _pagecontroller = PageController();
+  int currentPage = 0;
 
   bool onLastPage = false;
   // keeping last page record
@@ -35,6 +35,7 @@ class _screenviewState extends State<screenview> {
               onPageChanged: (index) {
                 //keeping track of page number
                 setState(() {
+                  currentPage = index;
                   onLastPage = (index == 6);
                 });
               },
@@ -56,26 +57,53 @@ class _screenviewState extends State<screenview> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 // For Skip Button
-                onLastPage
-                  ?GestureDetector(
-                  //(?=if) 
-                  onTap: () {
-                    _pagecontroller.jumpToPage(7);
-                  },
-                  child: const Text(''),
-                )
-
-                :GestureDetector(
-                  //(:=else) 
-                  onTap: () {
-                    _pagecontroller.jumpToPage(7);
-                  },
-                  child: const Text('Skip',style: TextStyle(fontSize:18,fontFamily: 'OriginalSurfer'),),
+                //Visibility for displaying in intro pages only
+                   Visibility(
+                  visible: !onLastPage && currentPage != 6 && currentPage != 7,
+                  child: onLastPage
+                    ? GestureDetector(
+                        //(?=if)
+                        onTap: () {
+                          _pagecontroller.jumpToPage(6);
+                        },
+                        child: const Text(''),
+                      )
+                    : GestureDetector(
+                        //(:=else)
+                        onTap: () {
+                          _pagecontroller.jumpToPage(6);
+                        },
+                        child: const Text(
+                          'Skip',
+                          style: TextStyle(
+                              fontSize: 18, fontFamily: 'OriginalSurfer'),
+                        ),
+                      ),
                 ),
+                
 
                 // for dot button
-                SmoothPageIndicator(controller: _pagecontroller, count: 8),
+                // Displaying pageindicator button in intropages only
+                if (!onLastPage && currentPage != 6 && currentPage != 7)
+                  SmoothPageIndicator(controller: _pagecontroller, count: 8),
 
+                 // For Next Button
+                //Visibility for displaying in intro pages only
+                Visibility(
+                  visible: !onLastPage && currentPage != 6 && currentPage != 7,
+                  child: GestureDetector(
+                    onTap: () {
+                      _pagecontroller.nextPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeOut);
+                    },
+                    child: const Text(
+                      'Next',
+                      style:
+                          TextStyle(fontSize: 18, fontFamily: 'OriginalSurfer'),
+                    ),
+                  ),
+                ),
                 // For last Page Proceed
                 onLastPage
                     ? GestureDetector(
@@ -85,19 +113,14 @@ class _screenviewState extends State<screenview> {
                               duration: const Duration(milliseconds: 500),
                               curve: Curves.easeOut);
                         },
-                        child: const Text('Proceed',style: TextStyle(fontSize:18,fontFamily: 'OriginalSurfer'),),
+                        child: const Text(
+                          'Click To Proceed........',
+                          style: TextStyle(
+                              fontSize: 18, fontFamily: 'OriginalSurfer'),
+                        ),
                       )
-
-                    // For Next button
-                    : GestureDetector(
-                        // (: = else) onlastpage false hoi ei case
-                        onTap: () {
-                          _pagecontroller.nextPage(
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.easeOut);
-                        },
-                        child: const Text('Next',style: TextStyle(fontSize:18,fontFamily: 'OriginalSurfer'),),
-                      ),
+                      
+                    : const SizedBox(),
               ],
             ),
           ),
