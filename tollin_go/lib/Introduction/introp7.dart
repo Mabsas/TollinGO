@@ -34,7 +34,7 @@ class _intropage7State extends State<intropage7> {
               textDirection: TextDirection.ltr,
               //textHeightBehavior: TextHeightBehavior(),
               style: TextStyle(
-                  fontSize: 70, fontFamily: 'OriginalSurfer'),
+                  fontSize: 50, fontFamily: 'OriginalSurfer'),
             ),
           ),
 
