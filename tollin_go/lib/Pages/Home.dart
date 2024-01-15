@@ -13,9 +13,9 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Toll Payment App'),
+        title: const Text('Toll Payment App'),
       ),
-      body: Center(
+      body: const Center(
         child: EmergencyLoanWidget(),
       ),
      /* child: Container(

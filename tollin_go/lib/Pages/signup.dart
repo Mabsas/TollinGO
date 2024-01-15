@@ -44,7 +44,7 @@ class _SignUpState extends State<SignUp> {
         /*
  e.code refer kore the error code related to FirebaseAuthException that is caught in the catch block. The FirebaseAuthException is an exception class provided by the Firebase Authentication library for Dart/Flutter.*/
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const Home()));
+            context, MaterialPageRoute(builder: (context) =>  Home()));
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

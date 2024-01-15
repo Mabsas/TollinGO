@@ -35,6 +35,6 @@ class _FailedState extends State<Failed> {
           ],
         ),
       ),
-    );;
+    );
   }
 }
