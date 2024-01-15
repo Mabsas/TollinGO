@@ -43,7 +43,7 @@ class _ScannerState extends State<Scanner> {
                     Text(
                       'USER PROFILE',
                       style: TextStyle(
-                        fontSize: 60,
+                        fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: Color.fromARGB(255, 0, 0, 0),
                       ),
