@@ -5,8 +5,8 @@ class NotificationService {
       FlutterLocalNotificationsPlugin();
 
   Future<void> initNotification() async {
-  AndroidInitializationSettings initializationSettingsAndroid =
-      const AndroidInitializationSettings('flutter_logo');
+    AndroidInitializationSettings initializationSettingsAndroid =
+        const AndroidInitializationSettings('flutter_logo');
 
     var initializationSettingsIOS = DarwinInitializationSettings(
         requestAlertPermission: true,
@@ -29,10 +29,9 @@ class NotificationService {
         iOS: DarwinNotificationDetails());
   }
 
- Future showNotification({int id = 0, String? title, String? body, String? payLoad}) async {
-  print('showNotification called');
-  await notificationsPlugin.show(id, title, body, await notificationDetails());
-  print('showNotification completed');
-}
-
+  Future showNotification(
+      {int id = 0, String? title, String? body, String? payLoad}) async {
+    return notificationsPlugin.show(
+        id, title, body, await notificationDetails());
+  }
 }
