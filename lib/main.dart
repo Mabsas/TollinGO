@@ -8,9 +8,11 @@ import 'package:tollin_go/Introduction/screenview.dart';
 import 'package:tollin_go/Introduction/splash.dart';
 import 'dart:io';
 import 'package:tollin_go/Pages/Home.dart';
+import 'package:tollin_go/Services/notify_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); 
+  await NotificationService().initNotification();
   // Corrected: Added parentheses to invoke the method
   Platform.isAndroid
       ? await Firebase.initializeApp(
@@ -26,6 +28,6 @@ void main() async {
 
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: Home(),
+    home: Home(title: 'tolll',),
   ));
 }

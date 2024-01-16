@@ -1,12 +1,12 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-class NotificationServide {
+class NotificationService {
   final FlutterLocalNotificationsPlugin notificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
   Future<void> initNotification() async {
-    AndroidInitializationSettings initializationSettingsAndroid =
-        const AndroidInitializationSettings("Flutter_logo");
+  AndroidInitializationSettings initializationSettingsAndroid =
+      const AndroidInitializationSettings('flutter_logo');
 
     var initializationSettingsIOS = DarwinInitializationSettings(
         requestAlertPermission: true,
@@ -18,19 +18,21 @@ class NotificationServide {
     var initializationSettings = InitializationSettings(
         android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
     await notificationsPlugin.initialize(initializationSettings,
-        onDidReceiveBackgroundNotificationResponse:
+        onDidReceiveNotificationResponse:
             (NotificationResponse notificationResponse) async {});
   }
 
   notificationDetails() {
     return const NotificationDetails(
-        android: AndroidNotificationDetails('channelId', 'channelName'), 
+        android: AndroidNotificationDetails('channelId', 'channelName',
+            importance: Importance.max),
         iOS: DarwinNotificationDetails());
   }
 
-  Future showNotification(
-      {int id = 0, String? title, String? body, String? payload}) async {
-    return notificationsPlugin.show(
-        id, title, body, await notificationDetails());
-  }
+ Future showNotification({int id = 0, String? title, String? body, String? payLoad}) async {
+  print('showNotification called');
+  await notificationsPlugin.show(id, title, body, await notificationDetails());
+  print('showNotification completed');
+}
+
 }
