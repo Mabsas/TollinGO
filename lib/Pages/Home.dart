@@ -41,9 +41,9 @@ class _HomeState extends State<Home> {
                       // Display the Scan button
                       ElevatedButton(
                         onPressed: () {
-                          Scanner();
+                         // Scanner();
                         },
-                        child: const Text('Scan'),
+                        child: const Text('Show Notification'),
                       ),
                     ],
                   ),

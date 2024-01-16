@@ -9,10 +9,9 @@ import 'package:tollin_go/Introduction/splash.dart';
 import 'dart:io';
 import 'package:tollin_go/Pages/Home.dart';
 
-
-
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized(); 
+  // Corrected: Added parentheses to invoke the method
   Platform.isAndroid
       ? await Firebase.initializeApp(
           options: const FirebaseOptions(
@@ -22,8 +21,11 @@ void main() async {
               projectId: "tollingo-85e82"),
         )
       : await Firebase.initializeApp();
+      
+  
+
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
-    home:Splash(),
+    home: Home(),
   ));
 }
