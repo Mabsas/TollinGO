@@ -13,7 +13,8 @@ class Scanner extends StatefulWidget {
 
 class _ScannerState extends State<Scanner> {
   var getResult = 'QR CODE RESULT';
-  double userBalance = 500.0; // Initialize the user's balance with a default value
+  double userBalance =
+      200.0; // Initialize the user's balance with a default value
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +104,7 @@ class _ScannerState extends State<Scanner> {
     );
   }
 
-   Future<void> _handleScanAndNavigate(BuildContext context) async {
+  Future<void> _handleScanAndNavigate(BuildContext context) async {
     try {
       final qrCode = await FlutterBarcodeScanner.scanBarcode(
         '#ff6666',
@@ -119,8 +120,9 @@ class _ScannerState extends State<Scanner> {
       });
 
       // Navigate to PaidScreen after scanning
-      if (qrCode.isNotEmpty && qrCode != '-1') {
-        userBalance-=100;
+      if (qrCode.isNotEmpty && qrCode != '-1' && userBalance != 0.00) {
+        userBalance -= 100;
+      
         Navigator.push(
           context,
           MaterialPageRoute(
