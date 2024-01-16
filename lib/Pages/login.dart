@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:tollin_go/Feature/scan.dart';
 import 'package:tollin_go/Pages/Home.dart';
 import 'package:tollin_go/Pages/forgetpassword.dart';
 import 'package:tollin_go/Pages/signup.dart';
@@ -28,7 +29,7 @@ class _LogInState extends State<LogIn> {
           .signInWithEmailAndPassword(email: email, password: password);
 
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) =>  Home()));
+          context, MaterialPageRoute(builder: (context) =>  Scanner()));  //hOME
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

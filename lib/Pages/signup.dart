@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:tollin_go/Feature/scan.dart';
 import 'package:tollin_go/Pages/Home.dart';
 import 'package:tollin_go/Pages/login.dart';
 
@@ -44,7 +45,7 @@ class _SignUpState extends State<SignUp> {
         /*
  e.code refer kore the error code related to FirebaseAuthException that is caught in the catch block. The FirebaseAuthException is an exception class provided by the Firebase Authentication library for Dart/Flutter.*/
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) =>  Home()));
+            context, MaterialPageRoute(builder: (context) =>  Scanner()));  //HOME
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
