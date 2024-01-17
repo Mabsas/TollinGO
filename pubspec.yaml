@@ -75,6 +75,7 @@ flutter:
     - assets/intro/
     - assets/intro_animations/
     - assets/Authen/
+    - assets/images/
      
 
   # An image asset can refer to one or more resolution-specific "variants", see
