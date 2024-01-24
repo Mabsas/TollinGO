@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously, unused_local_variable, unnecessary_null_comparison, duplicate_ignore
+// ignore_for_file: use_build_context_synchronously, unused_local_variable, unnecessary_null_comparison, duplicate_ignore, unused_import
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +45,7 @@ class _SignUpState extends State<SignUp> {
         /*
  e.code refer kore the error code related to FirebaseAuthException that is caught in the catch block. The FirebaseAuthException is an exception class provided by the Firebase Authentication library for Dart/Flutter.*/
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) =>  Scanner()));  //HOME
+            context, MaterialPageRoute(builder: (context) =>  Home()));  //HOME
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

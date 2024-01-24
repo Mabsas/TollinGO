@@ -1,11 +1,7 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 
-
-
 class EmergencyLoanWidget extends StatefulWidget {
-  const EmergencyLoanWidget({super.key});
+  const EmergencyLoanWidget({Key? key}) : super(key: key);
 
   @override
   _EmergencyLoanWidgetState createState() => _EmergencyLoanWidgetState();
@@ -13,6 +9,8 @@ class EmergencyLoanWidget extends StatefulWidget {
 
 class _EmergencyLoanWidgetState extends State<EmergencyLoanWidget> {
   double loanAmount = 0.0;
+  final double minLoanAmount = 200.0;
+  final double maxLoanAmount = 500.0;
 
   @override
   Widget build(BuildContext context) {
@@ -53,18 +51,66 @@ class _EmergencyLoanWidgetState extends State<EmergencyLoanWidget> {
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop();
+             // Navigate back to the home page
+              Navigator.of(context).popUntil((route) => route.isFirst);
               },
               child: Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
-                // TODO: Implement logic to process the emergency loan request
-                // For simplicity, let's print the loan amount for now
-                print('Emergency Loan Requested: $loanAmount');
-                Navigator.of(context).pop();
+                _processLoanRequest(context);
               },
               child: const Text('Submit'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _processLoanRequest(BuildContext context) {
+    if (loanAmount < minLoanAmount || loanAmount > maxLoanAmount) {
+      // Show an error dialog for invalid loan amount
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Error'),
+            content: Text('Loan amount must be between $minLoanAmount and $maxLoanAmount.'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    } else {
+      // Close the current dialog
+      Navigator.of(context).pop();
+
+      // Show a success dialog using Navigator
+      _showSuccessDialog(context);
+    }
+  }
+
+  void _showSuccessDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Success!'),
+          content: Text('Successfully received emergency loan of Tk $loanAmount.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                // Navigate back to the home page
+                Navigator.of(context).popUntil((route) => route.isFirst);
+              },
+              child: const Text('OK'),
             ),
           ],
         );
