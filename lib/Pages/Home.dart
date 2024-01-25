@@ -92,80 +92,166 @@ class _HomeState extends State<Home> {
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(4.0),
+                    padding: EdgeInsets.all(4.0),
                     child: Column(
                       children: [
-                        Image.asset(
-                          'assets/images/payment.png',
-                          width: 70,
-                          height: 70,
+                        ElevatedButton(
+                          onPressed: () {
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blueGrey[400],
+                          ),
+                          child: Column(
+                            children: [
+                              Image.asset(
+                                'assets/images/payment.png',
+                                width: 70,
+                                height: 70,
+                              ),
+                              Text(
+                                  'Payment',
+                                   style: TextStyle(
+                                     color: Colors.black,
+                                   ),
+                                 ),
+                            ],
+                          ),
                         ),
-                        const Text('Payment'),
                       ],
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.all(4.0),
+                    padding: EdgeInsets.all(4.0),
                     child: Column(
                       children: [
-                        Image.asset(
-                          'assets/images/tracking.png',
-                          width: 70,
-                          height: 70,
+                        ElevatedButton(
+                          onPressed: () {
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blueGrey[400],
+                          ),
+                          child: Column(
+                            children: [
+                              Image.asset(
+                                'assets/images/tracking.png',
+                                width: 70,
+                                height: 70,
+                              ),
+                              Text('Tracking',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),),
+                            ],
+                          ),
                         ),
-                        const Text('Tracking'),
                       ],
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.all(4.0),
+                    padding: EdgeInsets.all(4.0),
                     child: Column(
                       children: [
-                        Image.asset(
-                          'assets/images/activity.png',
-                          width: 70,
-                          height: 70,
+                        ElevatedButton(
+                          onPressed: () {
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blueGrey[400],
+                          ),
+                          child: Column(
+                            children: [
+                              Image.asset(
+                                'assets/images/activity.png',
+                                width: 70,
+                                height: 70,
+                              ),
+                              Text('Activity',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),),
+                            ],
+                          ),
                         ),
-                        const Text('Activity'),
                       ],
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.all(4.0),
+                    padding: EdgeInsets.all(4.0),
                     child: Column(
                       children: [
-                        Image.asset(
-                          'assets/images/yourtrip.png',
-                          width: 70,
-                          height: 70,
+                        ElevatedButton(
+                          onPressed: () {
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blueGrey[400],
+                          ),
+                          child: Column(
+                            children: [
+                              Image.asset(
+                                'assets/images/yourtrip.png',
+                                width: 70,
+                                height: 70,
+                              ),
+                              Text('Your Trip',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),),
+                            ],
+                          ),
                         ),
-                        const Text('YourTrip'),
                       ],
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.all(4.0),
+                    padding: EdgeInsets.all(4.0),
                     child: Column(
                       children: [
-                        Image.asset(
-                          'assets/images/customer service.png',
-                          width: 70,
-                          height: 70,
+                        ElevatedButton(
+                          onPressed: () {
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blueGrey[400],
+                          ),
+                          child: Column(
+                            children: [
+                              Image.asset(
+                                'assets/images/customer service.png',
+                                width: 70,
+                                height: 70,
+                              ),
+                              Text('Customer Service',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),),
+                            ],
+                          ),
                         ),
-                        const Text('Customer Service'),
                       ],
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.all(4.0),
+                    padding: EdgeInsets.all(4.0),
                     child: Column(
                       children: [
-                        Image.asset(
-                          'assets/images/setting.png',
-                          width: 70,
-                          height: 70,
+                        ElevatedButton(
+                          onPressed: () {
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blueGrey[400],
+                          ),
+                          child: Column(
+                            children: [
+                              Image.asset(
+                                'assets/images/setting.png',
+                                width: 70,
+                                height: 70,
+                              ),
+                              Text('Settings',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),),
+                            ],
+                          ),
                         ),
-                        const Text('Settings'),
                       ],
                     ),
                   ),
@@ -232,12 +318,14 @@ class CustomBalanceWidget extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            const Text(
-              '৳3000.00',
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                primary: Colors.white, // Set your desired button color
+              ),
+              child: Text(
+                '৳3000.00',
+                style: TextStyle(color: Colors.blueGrey[600]),
               ),
             ),
             const SizedBox(height: 9),
