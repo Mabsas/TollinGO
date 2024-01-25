@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tollin_go/Services/notify_service.dart';
 
 class EmergencyLoanWidget extends StatefulWidget {
   const EmergencyLoanWidget({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class _EmergencyLoanWidgetState extends State<EmergencyLoanWidget> {
   double loanAmount = 0.0;
   final double minLoanAmount = 200.0;
   final double maxLoanAmount = 500.0;
+  final NotificationService notificationService = NotificationService();
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +53,8 @@ class _EmergencyLoanWidgetState extends State<EmergencyLoanWidget> {
           actions: <Widget>[
             TextButton(
               onPressed: () {
-             // Navigate back to the home page
-              Navigator.of(context).popUntil((route) => route.isFirst);
+                // Navigate back to the home page
+                Navigator.of(context).popUntil((route) => route.isFirst);
               },
               child: Text('Cancel'),
             ),
@@ -70,13 +72,14 @@ class _EmergencyLoanWidgetState extends State<EmergencyLoanWidget> {
 
   void _processLoanRequest(BuildContext context) {
     if (loanAmount < minLoanAmount || loanAmount > maxLoanAmount) {
-      // Show an error dialog for invalid loan amount
+      // Show an error dialog for an invalid loan amount
       showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             title: const Text('Error'),
-            content: Text('Loan amount must be between $minLoanAmount and $maxLoanAmount.'),
+            content: Text(
+                'Loan amount must be between TK $minLoanAmount and Tk $maxLoanAmount'),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
@@ -103,10 +106,17 @@ class _EmergencyLoanWidgetState extends State<EmergencyLoanWidget> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Success!'),
-          content: Text('Successfully received emergency loan of Tk $loanAmount.'),
+          content:
+              Text('Successfully received an emergency loan of Tk $loanAmount'),
           actions: <Widget>[
             TextButton(
-              onPressed: () {
+              onPressed: () async {
+                // Close the current dialog
+                Navigator.of(context).pop();
+
+                // Send notification
+                await _sendNotification();
+
                 // Navigate back to the home page
                 Navigator.of(context).popUntil((route) => route.isFirst);
               },
@@ -115,6 +125,19 @@ class _EmergencyLoanWidgetState extends State<EmergencyLoanWidget> {
           ],
         );
       },
+    );
+  }
+
+  Future<void> _sendNotification() async {
+    // Set the notification content
+    String notificationTitle = 'TollinGo';
+    String notificationBody =
+        'Dear user, your request for an emergency loan of Tk $loanAmount was successful. Thank you.';
+
+    // Show the notification
+    await notificationService.showNotification(
+      title: notificationTitle,
+      body: notificationBody,
     );
   }
 }
