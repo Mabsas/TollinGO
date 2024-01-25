@@ -17,23 +17,23 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(400.0),
+        preferredSize: const Size.fromHeight(400.0),
         child: Container(
           height: 140,
           child: AppBar(
             backgroundColor: Colors.blueGrey[400],
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20),
               ),
             ),
-            title: Padding(
-              padding: const EdgeInsets.only(top: 20.0),
+            title: const Padding(
+              padding: EdgeInsets.only(top: 20.0),
               child: Row(
                 children: [
-                  Icon(Icons.account_circle, color: Colors.white, size: 50.0), // Adjust icon properties
-                  SizedBox(width: 8.0), // Add some space between the icon and the text
+                  Icon(Icons.account_circle, color: Colors.white, size: 50.0),
+                  SizedBox(width: 8.0),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -45,22 +45,21 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-
             actions: [
               IconButton(
-                icon: Icon(Icons.notifications,size: 30.0),
+                icon: const Icon(Icons.notifications, size: 30.0),
                 onPressed: () {
                   // Handle notification icon tap
                 },
               ),
               IconButton(
-                icon: Icon(Icons.message,size: 30.0),
+                icon: const Icon(Icons.message, size: 30.0),
                 onPressed: () {
                   // Handle customer icon tap
                 },
               ),
               IconButton(
-                icon: Icon(Icons.search,size: 32.0),
+                icon: const Icon(Icons.search, size: 32.0),
                 onPressed: () {
                   // Handle search icon tap
                 },
@@ -73,174 +72,100 @@ class _HomeState extends State<Home> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomBalanceWidget(), // Include the custom widget here
-            SizedBox(height: 4),
+            CustomBalanceWidget(),
+            const SizedBox(height: 4),
             GridView.count(
               crossAxisCount: 2,
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               children: [
                 // Rest of the code...
               ],
             ),
-            SizedBox(height: 16),
-            // New Custom Navigation Area
+            const SizedBox(height: 16),
             Container(
-              padding: EdgeInsets.all(16.0),
-              color: Colors.blueGrey[400], // Set your desired background color here
+              padding: const EdgeInsets.all(16.0),
+              color: Colors.blueGrey[400],
               child: GridView.count(
                 crossAxisCount: 2,
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                children: <Widget>[
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
                   Container(
-                    padding: EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Column(
                       children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            // Add your logic here for the 'Payment' button
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blueGrey[400], // Set your desired button color
-                          ),
-                          child: Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/payment.png',
-                                width: 70,
-                                height: 70,
-                              ),
-                              Text('Payment'),
-                            ],
-                          ),
+                        Image.asset(
+                          'assets/images/payment.png',
+                          width: 70,
+                          height: 70,
                         ),
+                        const Text('Payment'),
                       ],
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Column(
                       children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            // Add your logic here for the 'Tracking' button
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blueGrey[400], // Set your desired button color
-                          ),
-                          child: Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/tracking.png',
-                                width: 70,
-                                height: 70,
-                              ),
-                              Text('Tracking'),
-                            ],
-                          ),
+                        Image.asset(
+                          'assets/images/tracking.png',
+                          width: 70,
+                          height: 70,
                         ),
+                        const Text('Tracking'),
                       ],
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Column(
                       children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            // Add your logic here for the 'Payment' button
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blueGrey[400], // Set your desired button color
-                          ),
-                          child: Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/activity.png',
-                                width: 70,
-                                height: 70,
-                              ),
-                              Text('Activity'),
-                            ],
-                          ),
+                        Image.asset(
+                          'assets/images/activity.png',
+                          width: 70,
+                          height: 70,
                         ),
+                        const Text('Activity'),
                       ],
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Column(
                       children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            // Add your logic here for the 'Payment' button
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blueGrey[400], // Set your desired button color
-                          ),
-                          child: Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/yourtrip.png',
-                                width: 70,
-                                height: 70,
-                              ),
-                              Text('Your Trip'),
-                            ],
-                          ),
+                        Image.asset(
+                          'assets/images/yourtrip.png',
+                          width: 70,
+                          height: 70,
                         ),
-                      ],
-                    ),
-                  ),
-                  // Add other containers with images and text here...
-                  Container(
-                    padding: EdgeInsets.all(4.0),
-                    child: Column(
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            // Add your logic here for the 'Payment' button
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blueGrey[400], // Set your desired button color
-                          ),
-                          child: Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/customer service.png',
-                                width: 70,
-                                height: 70,
-                              ),
-                              Text('Customer Service'),
-                            ],
-                          ),
-                        ),
+                        const Text('YourTrip'),
                       ],
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Column(
                       children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            // Add your logic here for the 'Payment' button
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blueGrey[400], // Set your desired button color
-                          ),
-                          child: Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/setting.png',
-                                width: 70,
-                                height: 70,
-                              ),
-                              Text('Settings'),
-                            ],
-                          ),
+                        Image.asset(
+                          'assets/images/customer service.png',
+                          width: 70,
+                          height: 70,
                         ),
+                        const Text('Customer Service'),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          'assets/images/setting.png',
+                          width: 70,
+                          height: 70,
+                        ),
+                        const Text('Settings'),
                       ],
                     ),
                   ),
@@ -252,25 +177,25 @@ class _HomeState extends State<Home> {
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         notchMargin: 10,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             IconButton(
-              icon: Icon(Icons.home,size: 30.0),
+              icon: const Icon(Icons.home, size: 30.0),
               onPressed: () {},
             ),
             IconButton(
-              icon: Icon(Icons.shopping_cart,size: 30.0),
+              icon: const Icon(Icons.shopping_cart, size: 30.0),
               onPressed: () {},
             ),
             IconButton(
-              icon: Icon(Icons.explore,size: 30.0),
+              icon: const Icon(Icons.explore, size: 30.0),
               onPressed: () {},
             ),
             IconButton(
-              icon: Icon(Icons.menu,size: 30.0),
+              icon: const Icon(Icons.menu, size: 30.0),
               onPressed: () {},
             ),
           ],
@@ -278,7 +203,7 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        child: Icon(Icons.add,color:Colors.grey),
+        child: const Icon(Icons.add, color: Colors.grey),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
@@ -289,59 +214,61 @@ class CustomBalanceWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.blueGrey[400], // Set your desired background color here
-      elevation: 4.0, // Adjust elevation as needed
+      color: Colors.blueGrey[400],
+      elevation: 4.0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0), // Adjust border radius as needed
+        borderRadius: BorderRadius.circular(10.0),
       ),
       child: Container(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Main Balance',
               style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
-                color: Colors.white, // Set your desired text color
+                color: Colors.white,
               ),
             ),
-            Text(
+            const Text(
               '৳3000.00',
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
-                color: Colors.white, // Set your desired text color
+                color: Colors.white,
               ),
             ),
-            SizedBox(height: 9),
-            Text(
+            const SizedBox(height: 9),
+            const Text(
               'Valid Till: 25 December 2024',
               style: TextStyle(
                 fontSize: 13,
-                color: Colors.white, // Set your desired text color
+                color: Colors.white,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white, // Set your desired button color
+                    primary: Colors.white,
                   ),
                   child: Text(
                     'Recharge',
                     style: TextStyle(color: Colors.blueGrey[600]),
                   ),
                 ),
-                SizedBox(height: 8), // Add spacing between buttons
+                const SizedBox(height: 8),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _showEmergencyLoanDialog(context);
+                  },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white, // Set your desired button color
+                    primary: Colors.white,
                   ),
                   child: Text(
                     'Emergency Refill',
@@ -355,7 +282,6 @@ class CustomBalanceWidget extends StatelessWidget {
       ),
     );
   }
-}
 
 // to display the emergency loan function on pressing the emergency button
   void _showEmergencyLoanDialog(BuildContext context) {
@@ -366,7 +292,7 @@ class CustomBalanceWidget extends StatelessWidget {
       },
     );
   }
-
+}
 
 class CurvedBackgroundClipper extends CustomClipper<Path> {
   @override
