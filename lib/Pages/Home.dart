@@ -6,13 +6,19 @@ import 'package:tollin_go/Feature/scan.dart';
 import 'package:tollin_go/Services/notify_service.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  final double userBalance;
+
+  const Home({Key? key, required this.userBalance}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Home> createState() => _HomeState(userBalance: userBalance);
+  
 }
 
 class _HomeState extends State<Home> {
+  double userBalance;
+
+  _HomeState({required this.userBalance});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +78,7 @@ class _HomeState extends State<Home> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomBalanceWidget(),
+            CustomBalanceWidget(userBalance: userBalance),
             const SizedBox(height: 4),
             GridView.count(
               crossAxisCount: 2,
@@ -92,11 +98,13 @@ class _HomeState extends State<Home> {
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   Container(
-                    padding: EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Column(
                       children: [
                         ElevatedButton(
                           onPressed: () {
+
+                               _navigateToScanner(context);
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blueGrey[400],
@@ -108,7 +116,7 @@ class _HomeState extends State<Home> {
                                 width: 70,
                                 height: 70,
                               ),
-                              Text(
+                              const Text(
                                   'Payment',
                                    style: TextStyle(
                                      color: Colors.black,
@@ -121,7 +129,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Column(
                       children: [
                         ElevatedButton(
@@ -137,7 +145,7 @@ class _HomeState extends State<Home> {
                                 width: 70,
                                 height: 70,
                               ),
-                              Text('Tracking',
+                              const Text('Tracking',
                                 style: TextStyle(
                                   color: Colors.black,
                                 ),),
@@ -148,7 +156,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Column(
                       children: [
                         ElevatedButton(
@@ -164,7 +172,7 @@ class _HomeState extends State<Home> {
                                 width: 70,
                                 height: 70,
                               ),
-                              Text('Activity',
+                              const Text('Activity',
                                 style: TextStyle(
                                   color: Colors.black,
                                 ),),
@@ -175,7 +183,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Column(
                       children: [
                         ElevatedButton(
@@ -191,7 +199,7 @@ class _HomeState extends State<Home> {
                                 width: 70,
                                 height: 70,
                               ),
-                              Text('Your Trip',
+                              const Text('Your Trip',
                                 style: TextStyle(
                                   color: Colors.black,
                                 ),),
@@ -202,7 +210,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Column(
                       children: [
                         ElevatedButton(
@@ -218,7 +226,7 @@ class _HomeState extends State<Home> {
                                 width: 70,
                                 height: 70,
                               ),
-                              Text('Customer Service',
+                              const Text('Customer Service',
                                 style: TextStyle(
                                   color: Colors.black,
                                 ),),
@@ -229,7 +237,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Column(
                       children: [
                         ElevatedButton(
@@ -245,7 +253,7 @@ class _HomeState extends State<Home> {
                                 width: 70,
                                 height: 70,
                               ),
-                              Text('Settings',
+                              const Text('Settings',
                                 style: TextStyle(
                                   color: Colors.black,
                                 ),),
@@ -297,6 +305,11 @@ class _HomeState extends State<Home> {
 }
 
 class CustomBalanceWidget extends StatelessWidget {
+
+  final double userBalance;
+
+  const CustomBalanceWidget({Key? key, required this.userBalance}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -324,7 +337,8 @@ class CustomBalanceWidget extends StatelessWidget {
                 primary: Colors.white, // Set your desired button color
               ),
               child: Text(
-                '৳3000.00',
+                '৳${userBalance.toStringAsFixed(2)}',
+
                 style: TextStyle(color: Colors.blueGrey[600]),
               ),
             ),
@@ -376,11 +390,22 @@ class CustomBalanceWidget extends StatelessWidget {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return EmergencyLoanWidget();
+        return const EmergencyLoanWidget();
       },
     );
   }
 }
+
+//for the scanner function
+void _navigateToScanner(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => Scanner(),
+    ),
+  );
+}
+
 
 class CurvedBackgroundClipper extends CustomClipper<Path> {
   @override

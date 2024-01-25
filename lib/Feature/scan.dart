@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:tollin_go/Feature/fail.dart';
 import 'package:tollin_go/Feature/paid.dart';
+import 'package:tollin_go/Pages/Home.dart';
+import 'package:tollin_go/main.dart'; // Import the main.dart file to access Home class
 
 class Scanner extends StatefulWidget {
   const Scanner({Key? key}) : super(key: key);
@@ -12,9 +14,8 @@ class Scanner extends StatefulWidget {
 }
 
 class _ScannerState extends State<Scanner> {
-  var getResult = 'QR CODE RESULT';
-  double userBalance =
-      200.0; // Initialize the user's balance with a default value
+  double userBalance = 200.0; // Initialize the user's balance with a default value
+  String getResult = ''; // Add this line to declare getResult variable
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class _ScannerState extends State<Scanner> {
       body: Container(
         width: double.infinity,
         decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 114, 163, 240),
+          color: Color.fromRGBO(120, 144, 156, 1),
         ),
         child: Column(
           children: [
@@ -38,7 +39,7 @@ class _ScannerState extends State<Scanner> {
                   children: [
                     Icon(
                       Icons.account_box_rounded,
-                      color: Color.fromARGB(255, 0, 0, 0),
+                      color: Colors.white,
                     ),
                     SizedBox(width: 8),
                     Text(
@@ -46,7 +47,7 @@ class _ScannerState extends State<Scanner> {
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 0, 0, 0),
+                        color: Colors.white,
                       ),
                     ),
                   ],
@@ -56,7 +57,6 @@ class _ScannerState extends State<Scanner> {
             const SizedBox(
               height: 10,
             ),
-            // Display user's balance on the left side
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
@@ -66,12 +66,11 @@ class _ScannerState extends State<Scanner> {
                   style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 0, 0, 0),
+                    color: Colors.white,
                   ),
                 ),
               ),
             ),
-            // Display user's icon and profile text on the right side
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(
@@ -86,11 +85,13 @@ class _ScannerState extends State<Scanner> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // Display the Scan button
                       ElevatedButton(
                         onPressed: () {
                           _handleScanAndNavigate(context);
                         },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.blueGrey[400],
+                        ),
                         child: const Text('Scan'),
                       ),
                     ],
@@ -119,14 +120,14 @@ class _ScannerState extends State<Scanner> {
         getResult = qrCode;
       });
 
-      // Navigate to PaidScreen after scanning
+      // Navigate to Home after scanning
       if (qrCode.isNotEmpty && qrCode != '-1' && userBalance != 0.00) {
         userBalance -= 100;
-      
+
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Paid(qrCodeMessage: qrCode),
+            builder: (context) => Home(userBalance: userBalance),
           ),
         );
       }

@@ -28,6 +28,6 @@ void main() async {
 
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: Home(),
+    home: Home(userBalance: 500,),
   ));
 }
