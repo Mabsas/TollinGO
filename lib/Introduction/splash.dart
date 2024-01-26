@@ -67,7 +67,7 @@ class _SplashState extends State<Splash> {
             ),
             nextScreen: const screenview(),
             splashIconSize: 250,
-            duration: 7000,
+            duration: 1000,
             animationDuration: const Duration(seconds: 2),
             backgroundColor: Colors.transparent, // Set the background color to transparent
           ),

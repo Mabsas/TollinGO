@@ -401,7 +401,7 @@ void _navigateToScanner(BuildContext context) {
   Navigator.push(
     context,
     MaterialPageRoute(
-      builder: (context) => Scanner(),
+      builder: (context) => Scanner(userBalance: 500,),
     ),
   );
 }

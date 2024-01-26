@@ -162,8 +162,7 @@ class _LogInState extends State<LogIn> {
                   onTap: () {
                     if (_formkey.currentState!.validate()) {
                       // Check if passwords match
-                      if (userpasswordcontroller.text !=
-                          confirmuserpasswordcontroller.text) {
+                      if (userpasswordcontroller.text !=userpasswordcontroller.text || useremailcontroller.text  != useremailcontroller.text) {
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
                           backgroundColor: Color.fromARGB(255, 246, 29, 14),

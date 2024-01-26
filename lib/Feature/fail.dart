@@ -49,7 +49,7 @@ class _FailedState extends State<Failed> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Scanner(),
+                    builder: (context) => Scanner(userBalance: 500,),
                   ),
                 );
               },

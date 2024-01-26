@@ -2,105 +2,152 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:tollin_go/Feature/fail.dart';
-import 'package:tollin_go/Feature/paid.dart';
 import 'package:tollin_go/Pages/Home.dart';
-import 'package:tollin_go/main.dart'; // Import the main.dart file to access Home class
+import 'package:tollin_go/Feature/paid.dart';
+// Import the main.dart file to access Home class
 
 class Scanner extends StatefulWidget {
-  const Scanner({Key? key}) : super(key: key);
+  const Scanner({Key? key, required this.userBalance}) : super(key: key);
+
+  final double userBalance;
 
   @override
-  State<Scanner> createState() => _ScannerState();
+  State<Scanner> createState() => _ScannerState(userBalance: userBalance);
 }
 
 class _ScannerState extends State<Scanner> {
-  double userBalance = 200.0; // Initialize the user's balance with a default value
-  String getResult = ''; // Add this line to declare getResult variable
+  double userBalance;
+  double emergencyLimit = 500.0; // Add emergencyLimit
+  double loanBalance = 0.0; // Add loanBalance
+  String getResult = '';
 
+   _ScannerState({required this.userBalance});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          color: Color.fromRGBO(120, 144, 156, 1),
-        ),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 150,
+      body: Stack(
+        children: [
+          // Background design with gradients
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Colors.blueGrey[400]!, Colors.white],
+              ),
             ),
-            const Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: EdgeInsets.only(right: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Icon(
-                      Icons.account_box_rounded,
+          ),
+          // Rectangular widget with circular edges for user balance, emergency limit, and loan balance
+          Positioned(
+            top: 30,
+            left: 20,
+            right: 20,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.blueGrey[400],
+                borderRadius: BorderRadius.circular(20),
+              ),
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Main Balance',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
-                    SizedBox(width: 8),
-                    Text(
-                      'USER PROFILE',
+                  ),
+                  const SizedBox(height: 8),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                    ),
+                    child: Text(
+                      '৳${userBalance.toStringAsFixed(2)}',
                       style: TextStyle(
-                        fontSize: 30,
+                        color: Colors.blueGrey[600],
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Emergency Limit: \$${emergencyLimit.toStringAsFixed(2)}',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Loan Balance: \$${loanBalance.toStringAsFixed(2)}',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          // White section with Scan button and cutout
+          Positioned.fill(
+            top: 200,
+            child: Container(
+              decoration: const BoxDecoration(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
                         color: Colors.white,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                _handleScanAndNavigate(context);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.blueGrey[400],
+                                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                              ),
+                              child: const Text(
+                                'Scan To Pay',
+                                style: TextStyle(fontSize: 18,color: Colors.black),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 1.0, bottom: 10),
-                child: Text(
-                  'Balance: \$${userBalance.toStringAsFixed(2)}',
-                  style: const TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(60),
-                    topRight: Radius.circular(60),
-                  ),
-                ),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          _handleScanAndNavigate(context);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.blueGrey[400],
-                        ),
-                        child: const Text('Scan'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -127,7 +174,7 @@ class _ScannerState extends State<Scanner> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Home(userBalance: userBalance),
+          builder: (context) => Paid(qrCodeMessage: getResult),
           ),
         );
       }

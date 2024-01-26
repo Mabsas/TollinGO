@@ -53,8 +53,7 @@ class _EmergencyLoanWidgetState extends State<EmergencyLoanWidget> {
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                // Navigate back to the home page
-                Navigator.of(context).popUntil((route) => route.isFirst);
+                Navigator.of(context).pop();
               },
               child: Text('Cancel'),
             ),
@@ -72,7 +71,6 @@ class _EmergencyLoanWidgetState extends State<EmergencyLoanWidget> {
 
   void _processLoanRequest(BuildContext context) {
     if (loanAmount < minLoanAmount || loanAmount > maxLoanAmount) {
-      // Show an error dialog for an invalid loan amount
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -92,49 +90,40 @@ class _EmergencyLoanWidgetState extends State<EmergencyLoanWidget> {
         },
       );
     } else {
-      // Close the current dialog
       Navigator.of(context).pop();
 
-      // Show a success dialog using Navigator
       _showSuccessDialog(context);
     }
   }
 
   void _showSuccessDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Success!'),
-          content:
-              Text('Successfully received an emergency loan of Tk $loanAmount'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () async {
-                // Close the current dialog
-                Navigator.of(context).pop();
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Success!'),
+        content: Text('Successfully received an emergency loan of Tk $loanAmount'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () async {
+              await _sendNotification();
+              Navigator.pop(context); // Close the success dialog
+              Navigator.of(context).popUntil((route) => route.isFirst);
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      );
+    },
+  );
+}
 
-                // Send notification
-                await _sendNotification();
-
-                // Navigate back to the home page
-                Navigator.of(context).popUntil((route) => route.isFirst);
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        );
-      },
-    );
-  }
 
   Future<void> _sendNotification() async {
-    // Set the notification content
     String notificationTitle = 'TollinGo';
     String notificationBody =
         'Dear user, your request for an emergency loan of Tk $loanAmount was successful. Thank you.';
 
-    // Show the notification
     await notificationService.showNotification(
       title: notificationTitle,
       body: notificationBody,
