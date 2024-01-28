@@ -6,6 +6,7 @@ import 'package:tollin_go/Feature/scan.dart';
 import 'package:tollin_go/Pages/Home.dart';
 import 'package:tollin_go/Pages/forgetpassword.dart';
 import 'package:tollin_go/Pages/signup.dart';
+import 'package:tollin_go/Services/database.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -15,22 +16,27 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
-  String email = "", password = "",name = "";
+  String email = "", password = "", name = "";
 
   final _formkey = GlobalKey<FormState>();
- // TextEditingController usernamecontroller = TextEditingController();
+  TextEditingController usernamecontroller = TextEditingController();
   TextEditingController useremailcontroller = TextEditingController();
   TextEditingController userpasswordcontroller = TextEditingController();
   //TextEditingController confirmuserpasswordcontroller = TextEditingController();
 
-  userLogin() async {
+  Future userLogin() async {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
 
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) =>  Home(userBalance: 500,      userName: name,
-      userEmail: email,)));  //hOME
+          context,
+          MaterialPageRoute(
+              builder: (context) => Home(
+                    userBalance: 500,
+                    userName: name,
+                    userEmail: email,
+                  ))); //hOME
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -102,7 +108,8 @@ class _LogInState extends State<LogIn> {
                           color: Colors.white,
                         ),
                         hintText: 'Your Email',
-                        hintStyle: TextStyle(color: Colors.white60),errorStyle:TextStyle(color: Colors.yellow)),
+                        hintStyle: TextStyle(color: Colors.white60),
+                        errorStyle: TextStyle(color: Colors.yellow)),
                     style: const TextStyle(color: Colors.white),
                   ),
                 ),
@@ -126,13 +133,15 @@ class _LogInState extends State<LogIn> {
                       return null;
                     },
                     decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        prefixIcon: Icon(
-                          Icons.password,
-                          color: Colors.white,
-                        ),
-                        hintText: 'Password',
-                        hintStyle: TextStyle(color: Colors.white60),errorStyle: TextStyle(color: Colors.yellow),),
+                      border: InputBorder.none,
+                      prefixIcon: Icon(
+                        Icons.password,
+                        color: Colors.white,
+                      ),
+                      hintText: 'Password',
+                      hintStyle: TextStyle(color: Colors.white60),
+                      errorStyle: TextStyle(color: Colors.yellow),
+                    ),
                     style: const TextStyle(color: Colors.white),
                     obscureText: true,
                   ),
@@ -160,10 +169,13 @@ class _LogInState extends State<LogIn> {
                   height: 30.0,
                 ),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
                     if (_formkey.currentState!.validate()) {
                       // Check if passwords match
-                      if (userpasswordcontroller.text !=userpasswordcontroller.text || useremailcontroller.text  != useremailcontroller.text) {
+                      if (userpasswordcontroller.text !=
+                              userpasswordcontroller.text ||
+                          useremailcontroller.text !=
+                              useremailcontroller.text) {
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
                           backgroundColor: Color.fromARGB(255, 246, 29, 14),
@@ -179,9 +191,15 @@ class _LogInState extends State<LogIn> {
                       setState(() {
                         email = useremailcontroller.text;
                         password = userpasswordcontroller.text;
+                        name = usernamecontroller.text;
                       });
                     }
-                    userLogin();
+                    await userLogin();
+
+                    DataBaseService.collect_userinfo(
+                        name: usernamecontroller.text,
+                        email: useremailcontroller.text,
+                        password: userpasswordcontroller.text);
                   },
                   child: Center(
                     child: Container(

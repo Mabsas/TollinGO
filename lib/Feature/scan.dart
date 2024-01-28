@@ -21,7 +21,7 @@ class _ScannerState extends State<Scanner> {
   double loanBalance = 0.0; // Add loanBalance
   String getResult = '';
 
-   _ScannerState({required this.userBalance});
+  _ScannerState({required this.userBalance});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +64,8 @@ class _ScannerState extends State<Scanner> {
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       primary: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 16),
                     ),
                     child: Text(
                       '৳${userBalance.toStringAsFixed(2)}',
@@ -114,8 +115,12 @@ class _ScannerState extends State<Scanner> {
                     Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color:
+                            Colors.transparent, // Set the color to transparent
                         borderRadius: BorderRadius.circular(30),
+                        border: Border.all(
+                            color: Colors.white,
+                            width: 2), // Add a white border
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(16),
@@ -128,14 +133,16 @@ class _ScannerState extends State<Scanner> {
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.blueGrey[400],
-                                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 16, horizontal: 32),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),
                               ),
                               child: const Text(
                                 'Scan To Pay',
-                                style: TextStyle(fontSize: 18,color: Colors.black),
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.black),
                               ),
                             ),
                           ],
@@ -174,7 +181,7 @@ class _ScannerState extends State<Scanner> {
         Navigator.push(
           context,
           MaterialPageRoute(
-          builder: (context) => Paid(qrCodeMessage: getResult),
+            builder: (context) => Paid(qrCodeMessage: getResult),
           ),
         );
       }

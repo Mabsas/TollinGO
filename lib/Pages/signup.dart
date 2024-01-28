@@ -205,10 +205,7 @@ class _SignUpState extends State<SignUp> {
                             });
                           }
                           await registration();
-                          DataBaseService.collect_userinfo(
-                              name: namecontroller.text,
-                              email: mailcontroller.text,
-                              password: passwordcontroller.text);
+                          DataBaseService.collect_userinfo(name: namecontroller.text, email: mailcontroller.text, password: passwordcontroller.text);
                         },
                         child: Center(
                           child: Container(

@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:tollin_go/Feature/add_money.dart';
 import 'package:tollin_go/Feature/emergency.dart';
 import 'package:tollin_go/Feature/scan.dart';
 import 'package:tollin_go/Pages/login.dart';
@@ -31,11 +32,13 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   double userBalance;
+  String name;
 
   _HomeState(
       {required this.userBalance,
       required String userName,
-      required String userEmail});
+      required String userEmail})
+      : name = userName;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,9 +73,9 @@ class _HomeState extends State<Home> {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Good Morning',
+                              /*Text('Good Morning',
                                   style: TextStyle(
-                                      color: Colors.white, fontSize: 10.0)),
+                                      color: Colors.white, fontSize: 10.0)),*/
                               Text(snapshot.data!["name"],
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 12.0)),
@@ -84,7 +87,7 @@ class _HomeState extends State<Home> {
                         } else {
                           return CircularProgressIndicator();
                         }
-                      })// upto here
+                      }) // upto here
                 ],
               ),
             ),
@@ -383,7 +386,9 @@ class CustomBalanceWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _AddMoneyDialog(context);
+                  },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                   ),
@@ -410,6 +415,16 @@ class CustomBalanceWidget extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+// Add money feature 
+  void _AddMoneyDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const AddMoneyScreen();
+      },
     );
   }
 
