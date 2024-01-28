@@ -1,10 +1,12 @@
 // ignore_for_file: unused_import
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:tollin_go/Feature/emergency.dart';
 import 'package:tollin_go/Feature/scan.dart';
 import 'package:tollin_go/Pages/login.dart';
 import 'package:tollin_go/Pages/signout.dart';
+import 'package:tollin_go/Services/database.dart';
 import 'package:tollin_go/Services/notify_service.dart';
 
 class Home extends StatefulWidget {
@@ -56,20 +58,33 @@ class _HomeState extends State<Home> {
                 children: [
                   Icon(Icons.account_circle, color: Colors.white, size: 50.0),
                   SizedBox(width: 8.0),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Good Morning',
-                          style:
-                              TextStyle(color: Colors.white, fontSize: 10.0)),
-                      Text(widget.userName,
-                          style:
-                              TextStyle(color: Colors.white, fontSize: 12.0)),
-                      Text(widget.userEmail,
-                          style:
-                              TextStyle(color: Colors.white, fontSize: 12.0)),
-                    ],
-                  ),
+
+                  //Reading from database
+                  StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection("users")
+                          .doc(DataBaseService.user.uid)
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Good Morning',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 10.0)),
+                              Text(snapshot.data!["name"],
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 12.0)),
+                              Text(snapshot.data!["email"],
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 12.0)),
+                            ],
+                          );
+                        } else {
+                          return CircularProgressIndicator();
+                        }
+                      })// upto here
                 ],
               ),
             ),

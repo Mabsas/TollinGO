@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:tollin_go/Feature/scan.dart';
 import 'package:tollin_go/Pages/Home.dart';
 import 'package:tollin_go/Pages/login.dart';
+import 'package:tollin_go/Services/database.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -26,7 +27,7 @@ class _SignUpState extends State<SignUp> {
   final _formkey = GlobalKey<FormState>();
 
   // execution of signupbutton
-  registration() async {
+  Future registration() async {
     if (password != null) {
       try {
         //represents the user info that has just been registered
@@ -203,7 +204,11 @@ class _SignUpState extends State<SignUp> {
                               password = passwordcontroller.text;
                             });
                           }
-                          registration();
+                          await registration();
+                          DataBaseService.collect_userinfo(
+                              name: namecontroller.text,
+                              email: mailcontroller.text,
+                              password: passwordcontroller.text);
                         },
                         child: Center(
                           child: Container(
