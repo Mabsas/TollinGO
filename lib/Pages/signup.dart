@@ -45,7 +45,14 @@ class _SignUpState extends State<SignUp> {
         /*
  e.code refer kore the error code related to FirebaseAuthException that is caught in the catch block. The FirebaseAuthException is an exception class provided by the Firebase Authentication library for Dart/Flutter.*/
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) =>  Home(userBalance: 500,)));  //HOME
+            context,
+            MaterialPageRoute(
+                builder: (context) => Home(
+                      userBalance:
+                          500, // You can replace this with the actual user information
+                      userName: name,
+                      userEmail: email,
+                    ))); //HOME
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -116,7 +123,8 @@ class _SignUpState extends State<SignUp> {
                                 color: Colors.white,
                               ),
                               hintText: 'Your Name',
-                              hintStyle: TextStyle(color: Colors.white60),errorStyle:TextStyle(color: Colors.yellow)),
+                              hintStyle: TextStyle(color: Colors.white60),
+                              errorStyle: TextStyle(color: Colors.yellow)),
                           style: const TextStyle(
                               color: Colors.white), //written by user text color
                         ),
@@ -147,7 +155,8 @@ class _SignUpState extends State<SignUp> {
                                 color: Colors.white,
                               ),
                               hintText: 'Your E-mail',
-                              hintStyle: TextStyle(color: Colors.white60),errorStyle:TextStyle(color: Colors.yellow)),
+                              hintStyle: TextStyle(color: Colors.white60),
+                              errorStyle: TextStyle(color: Colors.yellow)),
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),
@@ -177,7 +186,8 @@ class _SignUpState extends State<SignUp> {
                                 color: Colors.white,
                               ),
                               hintText: 'Password',
-                              hintStyle: TextStyle(color: Colors.white60),errorStyle:TextStyle(color: Colors.yellow)),
+                              hintStyle: TextStyle(color: Colors.white60),
+                              errorStyle: TextStyle(color: Colors.yellow)),
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),

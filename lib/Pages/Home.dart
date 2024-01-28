@@ -3,21 +3,37 @@
 import 'package:flutter/material.dart';
 import 'package:tollin_go/Feature/emergency.dart';
 import 'package:tollin_go/Feature/scan.dart';
+import 'package:tollin_go/Pages/login.dart';
+import 'package:tollin_go/Pages/signout.dart';
 import 'package:tollin_go/Services/notify_service.dart';
 
 class Home extends StatefulWidget {
   final double userBalance;
+  final String userName;
+  final String userEmail;
 
-  const Home({Key? key, required this.userBalance}) : super(key: key);
+  const Home({
+    Key? key,
+    required this.userBalance,
+    required this.userName,
+    required this.userEmail,
+  }) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState(userBalance: userBalance);
+  State<Home> createState() => _HomeState(
+        userBalance: userBalance,
+        userName: userName,
+        userEmail: userEmail,
+      );
 }
 
 class _HomeState extends State<Home> {
   double userBalance;
 
-  _HomeState({required this.userBalance});
+  _HomeState(
+      {required this.userBalance,
+      required String userName,
+      required String userEmail});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +42,7 @@ class _HomeState extends State<Home> {
         child: Container(
           height: 140,
           child: AppBar(
+            automaticallyImplyLeading: false,
             backgroundColor: Colors.blueGrey[400],
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
@@ -33,7 +50,7 @@ class _HomeState extends State<Home> {
                 bottomRight: Radius.circular(20),
               ),
             ),
-            title: const Padding(
+            title: Padding(
               padding: EdgeInsets.only(top: 20.0),
               child: Row(
                 children: [
@@ -45,10 +62,10 @@ class _HomeState extends State<Home> {
                       Text('Good Morning',
                           style:
                               TextStyle(color: Colors.white, fontSize: 10.0)),
-                      Text('Afia Adilah',
+                      Text(widget.userName,
                           style:
                               TextStyle(color: Colors.white, fontSize: 12.0)),
-                      Text('01859200385',
+                      Text(widget.userEmail,
                           style:
                               TextStyle(color: Colors.white, fontSize: 12.0)),
                     ],
@@ -422,6 +439,11 @@ class CurvedBackgroundClipper extends CustomClipper<Path> {
   }
 }
 
+void logout() {
+  final _auth = AuthService();
+  _auth.signOut();
+}
+
 void _showSettingsMenu(BuildContext context) {
   final RenderBox overlay =
       Overlay.of(context).context.findRenderObject() as RenderBox;
@@ -451,8 +473,13 @@ void _showSettingsMenu(BuildContext context) {
           leading: const Icon(Icons.logout),
           title: const Text('Logout'),
           onTap: () {
-            // Handle logout option
-            Navigator.pop(context); // Close the menu
+            logout();
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => LogIn(),
+              ),
+            );
           },
         ),
       ),

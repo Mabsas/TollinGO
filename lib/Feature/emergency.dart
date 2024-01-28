@@ -80,9 +80,13 @@ class _EmergencyLoanWidgetState extends State<EmergencyLoanWidget> {
                 'Loan amount must be between TK $minLoanAmount and Tk $maxLoanAmount'),
             actions: <Widget>[
               TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+                onPressed: () async {
+              await _sendNotification('Failed to request an emergency balance!');
+              Navigator.pop(context);  // Close the success dialog
+              
+              // Replace 'Home' with your actual homepage route name
+              Navigator.pushReplacementNamed(context, 'Home');
+            },
                 child: const Text('OK'),
               ),
             ],
@@ -106,7 +110,7 @@ class _EmergencyLoanWidgetState extends State<EmergencyLoanWidget> {
         actions: <Widget>[
           TextButton(
             onPressed: () async {
-              await _sendNotification();
+              await _sendNotification('Dear user, your request for an emergency loan of Tk $loanAmount was successful. Thank you.');
               Navigator.pop(context);  // Close the success dialog
               
               // Replace 'Home' with your actual homepage route name
@@ -121,10 +125,10 @@ class _EmergencyLoanWidgetState extends State<EmergencyLoanWidget> {
 }
 
 
-  Future<void> _sendNotification() async {
+  Future<void> _sendNotification(String message) async {
     String notificationTitle = 'TollinGo';
     String notificationBody =
-        'Dear user, your request for an emergency loan of Tk $loanAmount was successful. Thank you.';
+        '$message';
 
     await notificationService.showNotification(
       title: notificationTitle,
