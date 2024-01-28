@@ -75,7 +75,7 @@ class _EmergencyLoanWidgetState extends State<EmergencyLoanWidget> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('Error'),
+            title: const Text('Error!'),
             content: Text(
                 'Loan amount must be between TK $minLoanAmount and Tk $maxLoanAmount'),
             actions: <Widget>[
@@ -107,8 +107,10 @@ class _EmergencyLoanWidgetState extends State<EmergencyLoanWidget> {
           TextButton(
             onPressed: () async {
               await _sendNotification();
-              Navigator.pop(context); // Close the success dialog
-              Navigator.of(context).popUntil((route) => route.isFirst);
+              Navigator.pop(context);  // Close the success dialog
+              
+              // Replace 'Home' with your actual homepage route name
+              Navigator.pushReplacementNamed(context, 'Home');
             },
             child: const Text('OK'),
           ),

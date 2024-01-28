@@ -12,7 +12,6 @@ class Home extends StatefulWidget {
 
   @override
   State<Home> createState() => _HomeState(userBalance: userBalance);
-  
 }
 
 class _HomeState extends State<Home> {
@@ -43,9 +42,15 @@ class _HomeState extends State<Home> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Good Morning', style: TextStyle(color: Colors.white, fontSize: 10.0)),
-                      Text('Afia Adilah', style: TextStyle(color: Colors.white, fontSize: 12.0)),
-                      Text('01859200385', style: TextStyle(color: Colors.white, fontSize: 12.0)),
+                      Text('Good Morning',
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 10.0)),
+                      Text('Afia Adilah',
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 12.0)),
+                      Text('01859200385',
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 12.0)),
                     ],
                   ),
                 ],
@@ -56,18 +61,6 @@ class _HomeState extends State<Home> {
                 icon: const Icon(Icons.notifications, size: 30.0),
                 onPressed: () {
                   // Handle notification icon tap
-                },
-              ),
-              IconButton(
-                icon: const Icon(Icons.message, size: 30.0),
-                onPressed: () {
-                  // Handle customer icon tap
-                },
-              ),
-              IconButton(
-                icon: const Icon(Icons.search, size: 32.0),
-                onPressed: () {
-                  // Handle search icon tap
                 },
               ),
             ],
@@ -103,8 +96,7 @@ class _HomeState extends State<Home> {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-
-                               _navigateToScanner(context);
+                            _navigateToScanner(context);
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blueGrey[400],
@@ -117,11 +109,11 @@ class _HomeState extends State<Home> {
                                 height: 70,
                               ),
                               const Text(
-                                  'Payment',
-                                   style: TextStyle(
-                                     color: Colors.black,
-                                   ),
-                                 ),
+                                'Payment',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -133,8 +125,7 @@ class _HomeState extends State<Home> {
                     child: Column(
                       children: [
                         ElevatedButton(
-                          onPressed: () {
-                          },
+                          onPressed: () {},
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blueGrey[400],
                           ),
@@ -145,10 +136,12 @@ class _HomeState extends State<Home> {
                                 width: 70,
                                 height: 70,
                               ),
-                              const Text('Tracking',
+                              const Text(
+                                'Tracking',
                                 style: TextStyle(
                                   color: Colors.black,
-                                ),),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -160,8 +153,7 @@ class _HomeState extends State<Home> {
                     child: Column(
                       children: [
                         ElevatedButton(
-                          onPressed: () {
-                          },
+                          onPressed: () {},
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blueGrey[400],
                           ),
@@ -172,10 +164,12 @@ class _HomeState extends State<Home> {
                                 width: 70,
                                 height: 70,
                               ),
-                              const Text('Activity',
+                              const Text(
+                                'Activity',
                                 style: TextStyle(
                                   color: Colors.black,
-                                ),),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -187,8 +181,7 @@ class _HomeState extends State<Home> {
                     child: Column(
                       children: [
                         ElevatedButton(
-                          onPressed: () {
-                          },
+                          onPressed: () {},
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blueGrey[400],
                           ),
@@ -199,10 +192,12 @@ class _HomeState extends State<Home> {
                                 width: 70,
                                 height: 70,
                               ),
-                              const Text('Your Trip',
+                              const Text(
+                                'Your Trip',
                                 style: TextStyle(
                                   color: Colors.black,
-                                ),),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -214,8 +209,7 @@ class _HomeState extends State<Home> {
                     child: Column(
                       children: [
                         ElevatedButton(
-                          onPressed: () {
-                          },
+                          onPressed: () {},
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blueGrey[400],
                           ),
@@ -226,10 +220,12 @@ class _HomeState extends State<Home> {
                                 width: 70,
                                 height: 70,
                               ),
-                              const Text('Customer Service',
+                              const Text(
+                                'Customer Service',
                                 style: TextStyle(
                                   color: Colors.black,
-                                ),),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -242,6 +238,7 @@ class _HomeState extends State<Home> {
                       children: [
                         ElevatedButton(
                           onPressed: () {
+                            _showSettingsMenu(context);
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blueGrey[400],
@@ -253,10 +250,12 @@ class _HomeState extends State<Home> {
                                 width: 70,
                                 height: 70,
                               ),
-                              const Text('Settings',
+                              const Text(
+                                'Settings',
                                 style: TextStyle(
                                   color: Colors.black,
-                                ),),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -281,34 +280,32 @@ class _HomeState extends State<Home> {
               onPressed: () {},
             ),
             IconButton(
-              icon: const Icon(Icons.shopping_cart, size: 30.0),
-              onPressed: () {},
-            ),
-            IconButton(
               icon: const Icon(Icons.explore, size: 30.0),
               onPressed: () {},
             ),
             IconButton(
-              icon: const Icon(Icons.menu, size: 30.0),
-              onPressed: () {},
+              icon: const Icon(Icons.message, size: 30.0),
+              onPressed: () {
+                // Handle customer icon tap
+              },
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      /*floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.add, color: Colors.grey),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,*/
     );
   }
 }
 
 class CustomBalanceWidget extends StatelessWidget {
-
   final double userBalance;
 
-  const CustomBalanceWidget({Key? key, required this.userBalance}) : super(key: key);
+  const CustomBalanceWidget({Key? key, required this.userBalance})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -338,7 +335,6 @@ class CustomBalanceWidget extends StatelessWidget {
               ),
               child: Text(
                 '৳${userBalance.toStringAsFixed(2)}',
-
                 style: TextStyle(color: Colors.blueGrey[600]),
               ),
             ),
@@ -401,18 +397,20 @@ void _navigateToScanner(BuildContext context) {
   Navigator.push(
     context,
     MaterialPageRoute(
-      builder: (context) => Scanner(userBalance: 500,),
+      builder: (context) => Scanner(
+        userBalance: 500,
+      ),
     ),
   );
 }
-
 
 class CurvedBackgroundClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     final Path path = Path();
     path.lineTo(0, size.height - 30.0);
-    path.quadraticBezierTo(size.width / 2, size.height, size.width, size.height - 30.0);
+    path.quadraticBezierTo(
+        size.width / 2, size.height, size.width, size.height - 30.0);
     path.lineTo(size.width, 0);
     path.close();
     return path;
@@ -424,4 +422,40 @@ class CurvedBackgroundClipper extends CustomClipper<Path> {
   }
 }
 
-// The EmergencyLoanWidget remains unchanged
+void _showSettingsMenu(BuildContext context) {
+  final RenderBox overlay =
+      Overlay.of(context).context.findRenderObject() as RenderBox;
+
+  showMenu(
+    context: context,
+    position: RelativeRect.fromRect(
+      Rect.fromPoints(
+        overlay.localToGlobal(Offset.zero),
+        overlay.localToGlobal(overlay.size.bottomRight(Offset.zero)),
+      ),
+      Offset.zero & overlay.size,
+    ),
+    items: [
+      PopupMenuItem(
+        child: ListTile(
+          leading: const Icon(Icons.dark_mode),
+          title: const Text('Dark Mode'),
+          onTap: () {
+            // Handle dark mode option
+            Navigator.pop(context); // Close the menu
+          },
+        ),
+      ),
+      PopupMenuItem(
+        child: ListTile(
+          leading: const Icon(Icons.logout),
+          title: const Text('Logout'),
+          onTap: () {
+            // Handle logout option
+            Navigator.pop(context); // Close the menu
+          },
+        ),
+      ),
+    ],
+  );
+}
