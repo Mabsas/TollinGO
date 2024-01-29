@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tollin_go/Services/notify_service.dart';
 
 class AddMoneyScreen extends StatefulWidget {
   final Function(double) onMoneyAdded;
@@ -86,6 +87,9 @@ class _AddMoneyScreenState extends State<AddMoneyScreen> {
                     //  existing logic for adding money
                     double addedMoney = double.parse(amountController.text);
                     widget.onMoneyAdded(addedMoney); // Call the callback
+
+                    // Show notification
+                    sendNotification(addedMoney);
                     showSnackBar(context, 'Money added successfully');
                   }
                 },
@@ -101,6 +105,23 @@ class _AddMoneyScreenState extends State<AddMoneyScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  // Function to send notification
+  void sendNotification(double addedMoney) {
+    // Create an instance of the NotificationService
+    NotificationService notificationService = NotificationService();
+
+    // Build notification details
+    String title = 'TollinGo';
+    String body = 'Tk $addedMoney have been added to your account.';
+
+    // Show the notification
+    notificationService.showNotification(
+      id: 1, // Update with a unique notification ID
+      title: title,
+      body: body,
     );
   }
 
