@@ -33,7 +33,7 @@ class _LogInState extends State<LogIn> {
           context,
           MaterialPageRoute(
               builder: (context) => Home(
-                    userBalance: 500,
+                    userBalance: 0.00,
                     userName: name,
                     userEmail: email,
                   ))); //hOME

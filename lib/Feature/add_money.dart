@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AddMoneyScreen extends StatefulWidget {
-  const AddMoneyScreen({Key? key}) : super(key: key);
+  final Function(double) onMoneyAdded;
+  const AddMoneyScreen({Key? key, required this.onMoneyAdded})
+      : super(key: key);
 
   @override
   _AddMoneyScreenState createState() => _AddMoneyScreenState();
@@ -81,7 +83,9 @@ class _AddMoneyScreenState extends State<AddMoneyScreen> {
               ElevatedButton(
                 onPressed: () {
                   if (validateInputs()) {
-                    // Your existing logic for adding money
+                    //  existing logic for adding money
+                    double addedMoney = double.parse(amountController.text);
+                    widget.onMoneyAdded(addedMoney); // Call the callback
                     showSnackBar(context, 'Money added successfully');
                   }
                 },
@@ -119,7 +123,8 @@ class _AddMoneyScreenState extends State<AddMoneyScreen> {
       return false;
     }
 
-    String validityDateText = validityDateController.text.replaceAll(RegExp(r'\D'), '');
+    String validityDateText =
+        validityDateController.text.replaceAll(RegExp(r'\D'), '');
     if (validityDateText.length != 4 ||
         int.tryParse(validityDateText.substring(0, 2))! > 12) {
       showSnackBar(context, 'Enter a valid validity date (MM/YY)');
@@ -140,7 +145,6 @@ class _AddMoneyScreenState extends State<AddMoneyScreen> {
     );
   }
 }
-
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -173,7 +177,7 @@ class CustomTextField extends StatelessWidget {
         labelText: labelText,
         hintText: hintText,
         labelStyle: TextStyle(color: Colors.blueGrey.shade900),
-        hintStyle: TextStyle(color: Colors.blueGrey.shade400),
+        hintStyle: TextStyle(color: const Color.fromARGB(255, 74, 90, 98)),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.blueGrey.shade700),
         ),
@@ -244,4 +248,3 @@ class ValidityDateFormatter extends TextInputFormatter {
     );
   }
 }
-

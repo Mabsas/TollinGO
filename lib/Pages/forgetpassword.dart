@@ -1,4 +1,3 @@
-
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,17 +17,17 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   // ignore: unnecessary_new
   TextEditingController mailcontroller = new TextEditingController();
 
-    final _formkey= GlobalKey<FormState>();
+  final _formkey = GlobalKey<FormState>();
 
   resetPassword() async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        backgroundColor: Color.fromARGB(255, 155, 217, 83),
+          backgroundColor: Color.fromARGB(255, 155, 217, 83),
           content: Text(
-        "Password Reset Email has been sent !",
-        style: TextStyle(fontSize: 18.0,color: Colors.black),
-      )));
+            "Password Reset Email has been sent !",
+            style: TextStyle(fontSize: 18.0, color: Colors.black),
+          )));
     } on FirebaseAuthException catch (e) {
       if (e.code == "user-not-found") {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -74,7 +73,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               Expanded(
                 child: Form(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 30),
                     child: ListView(
                       children: [
                         Container(
@@ -85,8 +85,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               borderRadius: BorderRadius.circular(30)),
                           child: TextFormField(
                             controller: mailcontroller,
-                            validator: (value){
-                              if(value==null || value.isEmpty){
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
                                 return 'Please Enter Email';
                               }
                               return null;
@@ -112,9 +112,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  if(_formkey.currentState!.validate()){
+                                  if (_formkey.currentState!.validate()) {
                                     setState(() {
-                                      email= mailcontroller.text;
+                                      email = mailcontroller.text;
                                     });
                                     resetPassword();
                                   }
@@ -123,8 +123,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                     width: 140,
                                     padding: const EdgeInsets.all(10),
                                     decoration: BoxDecoration(
-                                        color: const Color.fromARGB(255, 184, 166, 6),
-                                        borderRadius: BorderRadius.circular(10)),
+                                        color: const Color.fromARGB(
+                                            255, 184, 166, 6),
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     child: const Center(
                                       child: Text(
                                         "Send Email",
@@ -143,8 +145,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                   Navigator.pushAndRemoveUntil(
                                       context,
                                       PageRouteBuilder(
-                                        pageBuilder: (context, a, b) => const LogIn(),
-                                        transitionDuration: const Duration(seconds: 0),
+                                        pageBuilder: (context, a, b) => LogIn(),
+                                        transitionDuration:
+                                            const Duration(seconds: 0),
                                       ),
                                       (route) => false);
                                 },
@@ -166,8 +169,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           children: [
                             const Text(
                               "Don't have an account? ",
-                              style:
-                                  TextStyle(fontSize: 18.0, color: Colors.white),
+                              style: TextStyle(
+                                  fontSize: 18.0, color: Colors.white),
                             ),
                             GestureDetector(
                               onTap: () {

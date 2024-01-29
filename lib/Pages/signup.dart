@@ -50,7 +50,7 @@ class _SignUpState extends State<SignUp> {
             MaterialPageRoute(
                 builder: (context) => Home(
                       userBalance:
-                          500, // You can replace this with the actual user information
+                          0.00, // You can replace this with the actual user information
                       userName: name,
                       userEmail: email,
                     ))); //HOME

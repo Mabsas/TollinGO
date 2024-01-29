@@ -39,6 +39,14 @@ class _HomeState extends State<Home> {
       required String userName,
       required String userEmail})
       : name = userName;
+
+  void _updateUserBalance(double addedMoney) {
+    double updatedBalance = userBalance + addedMoney;
+    setState(() {
+      userBalance = updatedBalance;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,7 +114,10 @@ class _HomeState extends State<Home> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomBalanceWidget(userBalance: userBalance),
+            CustomBalanceWidget(
+              userBalance: userBalance,
+              onMoneyAdded: _updateUserBalance,
+            ),
             const SizedBox(height: 4),
             GridView.count(
               crossAxisCount: 2,
@@ -338,9 +349,13 @@ class _HomeState extends State<Home> {
 
 class CustomBalanceWidget extends StatelessWidget {
   final double userBalance;
+  final Function(double) onMoneyAdded;
 
-  const CustomBalanceWidget({Key? key, required this.userBalance})
-      : super(key: key);
+  const CustomBalanceWidget({
+    Key? key,
+    required this.userBalance,
+    required this.onMoneyAdded,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -418,12 +433,14 @@ class CustomBalanceWidget extends StatelessWidget {
     );
   }
 
-// Add money feature 
+// Add money feature
   void _AddMoneyDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return const AddMoneyScreen();
+        return AddMoneyScreen(
+          onMoneyAdded: onMoneyAdded, // Pass the callback to AddMoneyScreen
+        );
       },
     );
   }
@@ -445,7 +462,7 @@ void _navigateToScanner(BuildContext context) {
     context,
     MaterialPageRoute(
       builder: (context) => Scanner(
-        userBalance: 500,
+        userBalance: 0.00,
       ),
     ),
   );
