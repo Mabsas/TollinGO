@@ -10,6 +10,7 @@ import 'package:tollin_go/Pages/signout.dart';
 import 'package:tollin_go/Services/Chatbot.dart';
 import 'package:tollin_go/Services/database.dart';
 import 'package:tollin_go/Services/notify_service.dart';
+import 'package:tollin_go/Services/notification_page.dart';
 
 class Home extends StatefulWidget {
   final double userBalance;
@@ -104,6 +105,10 @@ class _HomeState extends State<Home> {
               IconButton(
                 icon: const Icon(Icons.notifications, size: 30.0),
                 onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NotificationPage()),
+                  );
                   // Handle notification icon tap
                 },
               ),
