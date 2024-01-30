@@ -7,6 +7,7 @@ import 'package:tollin_go/Feature/emergency.dart';
 import 'package:tollin_go/Feature/scan.dart';
 import 'package:tollin_go/Pages/login.dart';
 import 'package:tollin_go/Pages/signout.dart';
+import 'package:tollin_go/Services/Chatbot.dart';
 import 'package:tollin_go/Services/database.dart';
 import 'package:tollin_go/Services/notify_service.dart';
 
@@ -255,7 +256,11 @@ class _HomeState extends State<Home> {
                     child: Column(
                       children: [
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            // Navigate to ChatScreen when Customer Service is clicked
+                            Navigator.pop(context); // Close the menu
+                            _navigateToChatScreen(context);
+                          },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blueGrey[400],
                           ),
@@ -433,6 +438,18 @@ class CustomBalanceWidget extends StatelessWidget {
     );
   }
 
+  void _navigateToChatScreen(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ChatScreen(),
+      ),
+    ).then((value) {
+      // This code will be executed when the ChatScreen is popped
+      // For example, you can trigger actions when returning from ChatScreen
+    });
+  }
+
 // Add money feature
   void _AddMoneyDialog(BuildContext context) {
     showDialog(
@@ -464,6 +481,16 @@ void _navigateToScanner(BuildContext context) {
       builder: (context) => Scanner(
         userBalance: 0.00,
       ),
+    ),
+  );
+}
+
+//customer service
+void _navigateToChatScreen(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => ChatScreen(),
     ),
   );
 }

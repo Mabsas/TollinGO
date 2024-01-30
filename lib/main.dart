@@ -10,6 +10,7 @@ import 'dart:io';
 import 'package:tollin_go/Pages/Home.dart';
 import 'package:tollin_go/Services/notify_service.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); 
   await NotificationService().initNotification();
