@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:dialogflow_flutter/dialogflowFlutter.dart';
 import 'package:dialogflow_flutter/googleAuth.dart';
 import 'package:dialogflow_flutter/language.dart';
-import 'package:flutter/material.dart';
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -12,27 +12,37 @@ class _ChatScreenState extends State<ChatScreen> {
   final List<ChatMessage> _messages = <ChatMessage>[];
   final TextEditingController _textController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //automaticallyImplyLeading: false,
         title: Text('HelpLine'),
+        backgroundColor: Colors.blueGrey.shade500, // Set the app bar color
       ),
       body: Column(
         children: <Widget>[
           Flexible(
-            child: ListView.builder(
-              padding: EdgeInsets.all(8.0),
-              reverse: true,
-              itemBuilder: (_, int index) => _messages[index],
-              itemCount: _messages.length,
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.blueGrey.shade300, Colors.blueGrey.shade100],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
+              child: ListView.builder(
+                padding: EdgeInsets.all(8.0),
+                reverse: true,
+                itemBuilder: (_, int index) => _messages[index],
+                itemCount: _messages.length,
+              ),
             ),
           ),
           Divider(height: 1.0),
           Container(
-            decoration: BoxDecoration(color: Theme.of(context).cardColor),
+            decoration: BoxDecoration(
+              color: Colors.blueGrey.shade300, // Set the input bar color
+            ),
             child: _buildTextComposer(),
           ),
         ],
@@ -42,7 +52,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Widget _buildTextComposer() {
     return IconTheme(
-      data: IconThemeData(color: Theme.of(context).colorScheme.secondary),
+      data: IconThemeData(color: Color.fromARGB(255, 100, 108, 112)), // Set the icon color
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Row(
@@ -51,8 +61,8 @@ class _ChatScreenState extends State<ChatScreen> {
               child: TextField(
                 controller: _textController,
                 onSubmitted: _handleSubmitted,
-                decoration:
-                    InputDecoration.collapsed(hintText: 'Send a message'),
+                decoration: InputDecoration.collapsed(hintText: 'Send a message'),
+                style: TextStyle(color: Colors.white), // Set the text color
               ),
             ),
             Container(
@@ -88,7 +98,6 @@ class _ChatScreenState extends State<ChatScreen> {
 
     DialogFlow dialogflow = DialogFlow(authGoogle: authGoogle, language: Language.english);
 
-
     AIResponse response = await dialogflow.detectIntent(text);
     String message = response.getMessage() ?? '';
     ChatMessage botMessage = ChatMessage(
@@ -119,14 +128,14 @@ class ChatMessage extends StatelessWidget {
             margin: const EdgeInsets.only(right: 16.0, left: 16.0),
             child: CircleAvatar(
               child: Icon(Icons.person),
+              backgroundColor: isUserMessage ? Colors.blue : Colors.white, // Set the user avatar color
             ),
           ),
           Flexible(
             child: Container(
               padding: EdgeInsets.all(8.0),
               decoration: BoxDecoration(
-                color:
-                    isUserMessage ? Colors.blue : Theme.of(context).colorScheme.secondary,
+                color: isUserMessage ? Colors.blue.shade600 : Colors.blueGrey.shade500, // Set the message bubble color
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(8.0),
                   topRight: Radius.circular(8.0),

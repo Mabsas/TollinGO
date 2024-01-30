@@ -256,11 +256,7 @@ class _HomeState extends State<Home> {
                     child: Column(
                       children: [
                         ElevatedButton(
-                          onPressed: () {
-                            // Navigate to ChatScreen when Customer Service is clicked
-                            Navigator.pop(context); // Close the menu
-                            _navigateToChatScreen(context);
-                          },
+                          onPressed: () {},
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blueGrey[400],
                           ),
@@ -337,7 +333,12 @@ class _HomeState extends State<Home> {
             IconButton(
               icon: const Icon(Icons.message, size: 30.0),
               onPressed: () {
-                // Handle customer icon tap
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChatScreen(),
+                  ),
+                );
               },
             ),
           ],
@@ -436,18 +437,6 @@ class CustomBalanceWidget extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void _navigateToChatScreen(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ChatScreen(),
-      ),
-    ).then((value) {
-      // This code will be executed when the ChatScreen is popped
-      // For example, you can trigger actions when returning from ChatScreen
-    });
   }
 
 // Add money feature
