@@ -11,6 +11,10 @@ import 'package:tollin_go/Services/Chatbot.dart';
 import 'package:tollin_go/Services/database.dart';
 import 'package:tollin_go/Services/notify_service.dart';
 import 'package:tollin_go/Services/notification_page.dart';
+import 'package:tollin_go/Services/customer_service.dart';
+import 'package:tollin_go/Services/edit_profile.dart';
+import 'package:tollin_go/Feature/activity.dart';
+import 'package:tollin_go/Feature/yourTrip.dart';
 
 class Home extends StatefulWidget {
   final double userBalance;
@@ -69,7 +73,18 @@ class _HomeState extends State<Home> {
               padding: EdgeInsets.only(top: 20.0),
               child: Row(
                 children: [
-                  Icon(Icons.account_circle, color: Colors.white, size: 50.0),
+                  IconButton(
+                    icon: Icon(Icons.account_circle ,
+                        color: Colors.white,
+                        size: 40.0),
+                    onPressed: () {
+                      // Navigate to the NotificationPage when the icon is pressed
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => EditProfile()),
+                      );
+                    },
+                  ), // Adjust icon properties
                   SizedBox(width: 8.0),
 
                   //Reading from database
@@ -205,7 +220,12 @@ class _HomeState extends State<Home> {
                     child: Column(
                       children: [
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Activity()),
+                            );
+                          },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blueGrey[400],
                           ),
@@ -233,7 +253,12 @@ class _HomeState extends State<Home> {
                     child: Column(
                       children: [
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => CustomizeYourPlan()),
+                            );
+                          },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blueGrey[400],
                           ),
@@ -261,7 +286,12 @@ class _HomeState extends State<Home> {
                     child: Column(
                       children: [
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => CustomerService()),
+                            );
+                          },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blueGrey[400],
                           ),

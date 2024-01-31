@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class FeedbackPage extends StatefulWidget {
   @override
   _FeedbackPageState createState() => _FeedbackPageState();
@@ -14,7 +13,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
     return Scaffold(
       backgroundColor: Colors.blueGrey[100],
       appBar: AppBar(
-        title: Text('Feedback & Suggestions',
+        title: Text(
+          'Feedback & Suggestions',
           style: TextStyle(fontSize: 17.0, color: Colors.white),
         ),
         backgroundColor: Colors.blueGrey[300],
@@ -30,6 +30,12 @@ class _FeedbackPageState extends State<FeedbackPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Image.asset(
+              'assets/images/feedback.png', // Replace with the path to your image
+              width: 500.0,
+              height: 300.0,
+            ),
+            SizedBox(height: 10),
             Text(
               'Your Feedback',
               style: TextStyle(
@@ -57,9 +63,16 @@ class _FeedbackPageState extends State<FeedbackPage> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  // Handle feedback submission here
+                  // Handle submit logic here
+                  print("Submit button pressed");
                 },
-                child: Text('Submit'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blueGrey,
+                ),
+                child: Text(
+                  "Submit",
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
             ),
           ],

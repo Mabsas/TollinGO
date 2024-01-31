@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tollin_go/Services/create_complain.dart';
 import 'package:tollin_go/Services/feedback.dart';
+import 'package:tollin_go/Services/Chatbot.dart';
 
 class CustomerService extends StatelessWidget {
   @override
@@ -27,10 +28,11 @@ class CustomerService extends StatelessWidget {
           children: [
             // Add an Image widget before the text widgets
             Image.asset(
-              'assets/images/customer-service.png', // Replace with the path to your image
+              'assets/images/Cservice.png',
               width: 500.0,
               height: 300.0,
             ),
+
             SizedBox(height:10),
             Text(
               "How May We Help You Today?",
@@ -43,7 +45,7 @@ class CustomerService extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ChatBox()),
+                      MaterialPageRoute(builder: (context) => ChatScreen()),
                     );
                     // handle register a complaint
                     print("Register a Complaint");
