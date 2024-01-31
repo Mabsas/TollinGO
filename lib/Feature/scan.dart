@@ -77,21 +77,21 @@ class _ScannerState extends State<Scanner> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  Text(
+                  /*Text(
                     'Emergency Limit: \$${emergencyLimit.toStringAsFixed(2)}',
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.white,
                     ),
-                  ),
+                  ),*/
                   const SizedBox(height: 8),
-                  Text(
+                  /*Text(
                     'Loan Balance: \$${loanBalance.toStringAsFixed(2)}',
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.white,
                     ),
-                  ),
+                  ),*/
                 ],
               ),
             ),

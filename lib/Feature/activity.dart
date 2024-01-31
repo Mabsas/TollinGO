@@ -56,7 +56,7 @@ class Activity extends StatelessWidget {
 
             SizedBox(height: 16),
 
-            SizedBox(height: 360),
+            SizedBox(height: 300),
             Text(
               'Activity history is available for the last 30 days only. Information may take some time to update.',
               style: TextStyle(fontSize: 14),

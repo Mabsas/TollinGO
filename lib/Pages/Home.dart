@@ -556,7 +556,7 @@ void _showSettingsMenu(BuildContext context) {
       Offset.zero & overlay.size,
     ),
     items: [
-      PopupMenuItem(
+     /* PopupMenuItem(
         child: ListTile(
           leading: const Icon(Icons.dark_mode),
           title: const Text('Dark Mode'),
@@ -565,7 +565,7 @@ void _showSettingsMenu(BuildContext context) {
             Navigator.pop(context); // Close the menu
           },
         ),
-      ),
+      ),*/
       PopupMenuItem(
         child: ListTile(
           leading: const Icon(Icons.logout),

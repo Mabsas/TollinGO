@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class ChatBox extends StatefulWidget {
   @override
   _ChatBoxState createState() => _ChatBoxState();
@@ -76,10 +75,10 @@ class _ChatBoxState extends State<ChatBox> {
                     leading: CircleAvatar(
                       child: message.isAutomated
                           ? Image.asset(
-                        'assests/image/logo.png',
-                        width: 40.0,
-                        height: 40.0,
-                      )
+                              'assets/image/logo.png', // Corrected asset path
+                              width: 40.0,
+                              height: 40.0,
+                            )
                           : Text(message.sender[0]),
                     ),
                     trailing: Text(message.time.toString()),

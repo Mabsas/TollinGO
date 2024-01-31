@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dialogflow_flutter/dialogflowFlutter.dart';
 import 'package:dialogflow_flutter/googleAuth.dart';
 import 'package:dialogflow_flutter/language.dart';
+import 'package:tollin_go/Services/create_complain.dart';
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -17,18 +18,14 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('HelpLine'),
-        backgroundColor: Colors.blueGrey.shade500, // Set the app bar color
+        backgroundColor: Colors.blueGrey.shade500,
       ),
       body: Column(
         children: <Widget>[
           Flexible(
             child: Container(
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.blueGrey.shade300, Colors.blueGrey.shade100],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
+                color: Colors.blueGrey.shade100,
               ),
               child: ListView.builder(
                 padding: EdgeInsets.all(8.0),
@@ -41,7 +38,7 @@ class _ChatScreenState extends State<ChatScreen> {
           Divider(height: 1.0),
           Container(
             decoration: BoxDecoration(
-              color: Colors.blueGrey.shade300, // Set the input bar color
+              color: Colors.blueGrey.shade300,
             ),
             child: _buildTextComposer(),
           ),
@@ -52,7 +49,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Widget _buildTextComposer() {
     return IconTheme(
-      data: IconThemeData(color: Color.fromARGB(255, 100, 108, 112)), // Set the icon color
+      data: IconThemeData(color: Color.fromARGB(255, 100, 108, 112)),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Row(
@@ -62,7 +59,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 controller: _textController,
                 onSubmitted: _handleSubmitted,
                 decoration: InputDecoration.collapsed(hintText: 'Send a message'),
-                style: TextStyle(color: Colors.white), // Set the text color
+                style: TextStyle(color: Colors.white),
               ),
             ),
             Container(
@@ -92,18 +89,25 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Future<void> _dialogFlowRequest(String text) async {
+    print("Sending user message to Dialogflow: $text");
+
     AuthGoogle authGoogle = await AuthGoogle(
-      fileJson: 'assets/forchat/flutter-plou-2b7aed3eb8a7.json',
+      fileJson: 'assets/flutter-plou-2b7aed3eb8a7.json',
     ).build();
 
-    DialogFlow dialogflow = DialogFlow(authGoogle: authGoogle, language: Language.english);
+    DialogFlow dialogflow =
+        DialogFlow(authGoogle: authGoogle, language: Language.english);
 
     AIResponse response = await dialogflow.detectIntent(text);
     String message = response.getMessage() ?? '';
+  
+    print("Received response from Dialogflow: $message");
+
     ChatMessage botMessage = ChatMessage(
       text: message,
       isUserMessage: false,
     );
+  
     setState(() {
       _messages.insert(0, botMessage);
     });
@@ -127,15 +131,15 @@ class ChatMessage extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(right: 16.0, left: 16.0),
             child: CircleAvatar(
-              child: Icon(Icons.person),
-              backgroundColor: isUserMessage ? Colors.blue : Colors.white, // Set the user avatar color
+              child: Icon(Icons.person), // Change this to the desired user icon
+              backgroundColor: isUserMessage ? Colors.blue : Colors.white,
             ),
           ),
           Flexible(
             child: Container(
               padding: EdgeInsets.all(8.0),
               decoration: BoxDecoration(
-                color: isUserMessage ? Colors.blue.shade600 : Colors.blueGrey.shade500, // Set the message bubble color
+                color: isUserMessage ? Colors.blue.shade600 : Colors.blueGrey.shade500,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(8.0),
                   topRight: Radius.circular(8.0),

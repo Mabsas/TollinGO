@@ -17,7 +17,7 @@ class NotificationPage extends StatelessWidget {
             bottomRight: Radius.circular(70.0),
           ),
         ),
-        actions: [
+        /*actions: [
           Padding(
             padding: EdgeInsets.only(right: 16.0),
             child: IconButton(
@@ -27,7 +27,7 @@ class NotificationPage extends StatelessWidget {
               },
             ),
           ),
-        ],
+        ],*/
       ),
       body: Container(
         color: Colors.white54,
