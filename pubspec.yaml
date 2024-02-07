@@ -30,6 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  dialog_flowtter:  
   
 
 
@@ -47,7 +48,9 @@ dependencies:
   firebase_messaging: ^14.7.10
   flutter_local_notifications: ^16.3.0
   shared_preferences: ^2.2.2
-  dialogflow_flutter: ^1.0.0
+
+
+
   
 
 
@@ -80,6 +83,7 @@ flutter:
     - assets/Authen/
     - assets/images/
     - assets/forchat/
+    - assets/
      
 
   # An image asset can refer to one or more resolution-specific "variants", see

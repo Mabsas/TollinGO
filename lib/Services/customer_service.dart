@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tollin_go/Services/create_complain.dart';
 import 'package:tollin_go/Services/feedback.dart';
-import 'package:tollin_go/Services/Chatbot.dart';
+import 'package:tollin_go/Services/chat.dart';
 
 class CustomerService extends StatelessWidget {
   @override
@@ -45,7 +45,7 @@ class CustomerService extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ChatScreen()),
+                      MaterialPageRoute(builder: (context) => chat()),
                     );
                     // handle register a complaint
                     print("Register a Complaint");

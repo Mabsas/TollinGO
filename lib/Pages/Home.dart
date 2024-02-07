@@ -7,7 +7,7 @@ import 'package:tollin_go/Feature/emergency.dart';
 import 'package:tollin_go/Feature/scan.dart';
 import 'package:tollin_go/Pages/login.dart';
 import 'package:tollin_go/Pages/signout.dart';
-import 'package:tollin_go/Services/Chatbot.dart';
+import 'package:tollin_go/Services/chat.dart';
 import 'package:tollin_go/Services/database.dart';
 import 'package:tollin_go/Services/notify_service.dart';
 import 'package:tollin_go/Services/notification_page.dart';
@@ -371,7 +371,7 @@ class _HomeState extends State<Home> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ChatScreen(),
+                    builder: (context) => chat(),
                   ),
                 );
               },
@@ -514,7 +514,7 @@ void _navigateToChatScreen(BuildContext context) {
   Navigator.push(
     context,
     MaterialPageRoute(
-      builder: (context) => ChatScreen(),
+      builder: (context) => chat(),
     ),
   );
 }

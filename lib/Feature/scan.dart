@@ -175,10 +175,9 @@ class _ScannerState extends State<Scanner> {
       });
 
       // Navigate to Home after scanning
-      if (qrCode.isNotEmpty && qrCode != '-1' && userBalance != 0.00) {
-        userBalance -= 100;
+      if (qrCode.isNotEmpty && qrCode != '-1') {
 
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => Paid(qrCodeMessage: getResult),

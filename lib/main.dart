@@ -8,6 +8,7 @@ import 'package:tollin_go/Introduction/screenview.dart';
 import 'package:tollin_go/Introduction/splash.dart';
 import 'dart:io';
 import 'package:tollin_go/Pages/Home.dart';
+import 'package:tollin_go/Services/chat.dart';
 import 'package:tollin_go/Services/notify_service.dart';
 
 
