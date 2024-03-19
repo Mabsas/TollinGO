@@ -2,6 +2,8 @@
     <!-- Add these lines for required permissions -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     
     <application
@@ -33,6 +35,8 @@
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
             android:name="flutterEmbedding"
-            android:value="2" />
+            android:value="2" /> 
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAuMBlzRHj7dUGz0gm42I-1wCcMeiNUClw"/> 
     </application>
 </manifest>

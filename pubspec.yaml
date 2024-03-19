@@ -48,6 +48,13 @@ dependencies:
   firebase_messaging: ^14.7.10
   flutter_local_notifications: ^16.3.0
   shared_preferences: ^2.2.2
+  google_sign_in: ^6.2.1
+  the_apple_sign_in: ^1.1.1
+  google_maps_flutter: ^2.5.3
+  geolocator: ^11.0.0
+  flutter_google_places: ^0.3.0
+  awesome_snackbar_content: ^0.1.3
+
 
 
 

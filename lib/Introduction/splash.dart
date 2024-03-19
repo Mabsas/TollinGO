@@ -3,6 +3,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tollin_go/Introduction/screenview.dart';
+import 'package:tollin_go/Pages/signup.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ class _SplashState extends State<Splash> {
   }
 
   route() {
-    Navigator.of(context).pushReplacementNamed('/login');
+    Navigator.of(context).pushReplacementNamed('/signup');
   }
 
   @override
@@ -65,7 +66,7 @@ class _SplashState extends State<Splash> {
                 ),
               ],
             ),
-            nextScreen: const screenview(),
+            nextScreen: const SignUp(),
             splashIconSize: 250,
             duration: 1000,
             animationDuration: const Duration(seconds: 2),

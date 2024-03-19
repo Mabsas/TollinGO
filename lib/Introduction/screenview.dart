@@ -7,6 +7,7 @@ import 'package:tollin_go/Introduction/introp4.dart';
 import 'package:tollin_go/Introduction/introp5.dart';
 import 'package:tollin_go/Introduction/introp6.dart';
 import 'package:tollin_go/Introduction/introp7.dart';
+import 'package:tollin_go/Pages/Home.dart';
 import 'package:tollin_go/Pages/signup.dart';
 
 // ignore: camel_case_types
@@ -47,7 +48,7 @@ class _screenviewState extends State<screenview> {
                 intropage5(),
                 intropage6(),
                 intropage7(),
-                SignUp(),
+                Home(userBalance: 0.00, userName: '', userEmail:''),
               ]),
 
           //page indicator sign

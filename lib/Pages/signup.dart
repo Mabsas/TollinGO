@@ -16,58 +16,47 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   String email = "", password = "", name = "";
-
-  // for getting the data that user is giving through this controller
   TextEditingController namecontroller = new TextEditingController();
   TextEditingController passwordcontroller = new TextEditingController();
   TextEditingController mailcontroller = new TextEditingController();
 
-  /* Validity check kore of the contents of the form. It helps in checking if the user has filled out the required information (name, email, password) before allowing any action, like submitting the form.*/
-
   final _formkey = GlobalKey<FormState>();
 
-  // execution of signupbutton
-  Future registration() async {
-    if (password != null) {
+  registration() async {
+    if (password != null &&
+        namecontroller.text != "" &&
+        mailcontroller.text != "") {
       try {
-        //represents the user info that has just been registered
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
-
-        //Snackbar use kore to show popup message ta jeta user dekhbe & scaffold messenger is the widget that provides that facility
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            backgroundColor: Color.fromARGB(255, 82, 245, 57),
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
-              "Registered Successfully",
-              style: TextStyle(fontSize: 20.0, color: Colors.black),
-            )));
+          "Registered Successfully",
+          style: TextStyle(fontSize: 20.0),
+        )));
         // ignore: use_build_context_synchronously
-        //Navigator.push use kore for moving from one page to another
-        /*
- e.code refer kore the error code related to FirebaseAuthException that is caught in the catch block. The FirebaseAuthException is an exception class provided by the Firebase Authentication library for Dart/Flutter.*/
         Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) => Home(
-                      userBalance:
-                          0.00, // You can replace this with the actual user information
-                      userName: name,
-                      userEmail: email,
-                    ))); //HOME
+                      userBalance: 0.00,
+                      userEmail: '',
+                      userName: '',
+                    )));
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              backgroundColor: Color.fromARGB(255, 244, 182, 75),
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: Colors.orangeAccent,
               content: Text(
                 "Password Provided is too Weak",
-                style: TextStyle(fontSize: 18.0, color: Colors.black),
+                style: TextStyle(fontSize: 18.0),
               )));
         } else if (e.code == "email-already-in-use") {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              backgroundColor: Color.fromARGB(255, 244, 182, 75),
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: Colors.orangeAccent,
               content: Text(
                 "Account Already exists",
-                style: TextStyle(fontSize: 18.0, color: Colors.black),
+                style: TextStyle(fontSize: 18.0),
               )));
         }
       }
@@ -77,126 +66,101 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(40, 55, 147, 1),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          child: Form(
-            //validity of users info
-            key: _formkey,
-            child: Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(
-                      top: 120.0, left: 20.0, right: 20.0),
+          child: Column(
+            children: [
+              Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: Image.asset(
+                    "assets/Authen/car.PNG",
+                    fit: BoxFit.cover,
+                  )),
+              SizedBox(
+                height: 30.0,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                child: Form(
+                  key: _formkey,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        "Hello...!",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 36.0,
-                            fontFamily: 'OriginalSurfer'),
-                      ),
-                      const SizedBox(
-                        height: 50.0,
-                      ),
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 5.0, horizontal: 5.0),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 2.0, horizontal: 30.0),
                         decoration: BoxDecoration(
-                            color: const Color.fromRGBO(76, 89, 165, 1),
+                            color: Color(0xFFedf0f8),
                             borderRadius: BorderRadius.circular(30)),
                         child: TextFormField(
-                          cursorColor: Colors.black,
-                          showCursor: true,
-                          controller: namecontroller,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please Enter Name';
                             }
                             return null;
                           },
-                          decoration: const InputDecoration(
+                          controller: namecontroller,
+                          decoration: InputDecoration(
                               border: InputBorder.none,
-                              prefixIcon: Icon(
-                                Icons.person_2_outlined,
-                                color: Colors.white,
-                              ),
-                              hintText: 'Your Name',
-                              hintStyle: TextStyle(color: Colors.white60),
-                              errorStyle: TextStyle(color: Colors.yellow)),
-                          style: const TextStyle(
-                              color: Colors.white), //written by user text color
+                              hintText: "Name",
+                              hintStyle: TextStyle(
+                                  color: Color(0xFFb2b7bf), fontSize: 18.0)),
                         ),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 30.0,
                       ),
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 5.0, horizontal: 5.0),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 2.0, horizontal: 30.0),
                         decoration: BoxDecoration(
-                            color: const Color.fromRGBO(76, 89, 165, 1),
+                            color: Color(0xFFedf0f8),
                             borderRadius: BorderRadius.circular(30)),
                         child: TextFormField(
-                          cursorColor: Colors.black,
-                          showCursor: true,
-                          controller: mailcontroller,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please Enter E-mail';
+                              return 'Please Enter Email';
                             }
                             return null;
                           },
-                          decoration: const InputDecoration(
+                          controller: mailcontroller,
+                          decoration: InputDecoration(
                               border: InputBorder.none,
-                              prefixIcon: Icon(
-                                Icons.email_outlined,
-                                color: Colors.white,
-                              ),
-                              hintText: 'Your E-mail',
-                              hintStyle: TextStyle(color: Colors.white60),
-                              errorStyle: TextStyle(color: Colors.yellow)),
-                          style: const TextStyle(color: Colors.white),
+                              hintText: "Email",
+                              hintStyle: TextStyle(
+                                  color: Color(0xFFb2b7bf), fontSize: 18.0)),
                         ),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 30.0,
                       ),
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 5.0, horizontal: 5.0),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 2.0, horizontal: 30.0),
                         decoration: BoxDecoration(
-                            color: const Color.fromRGBO(76, 89, 165, 1),
+                            color: Color(0xFFedf0f8),
                             borderRadius: BorderRadius.circular(30)),
                         child: TextFormField(
-                          showCursor: true,
-                          cursorColor: Colors.black,
-                          controller: passwordcontroller,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please Enter Password';
                             }
                             return null;
                           },
-                          decoration: const InputDecoration(
+                          controller: passwordcontroller,
+                          decoration: InputDecoration(
                               border: InputBorder.none,
-                              prefixIcon: Icon(
-                                Icons.password_outlined,
-                                color: Colors.white,
-                              ),
-                              hintText: 'Password',
-                              hintStyle: TextStyle(color: Colors.white60),
-                              errorStyle: TextStyle(color: Colors.yellow)),
-                          style: const TextStyle(color: Colors.white),
+                              hintText: "Password",
+                              hintStyle: TextStyle(
+                                  color: Color(0xFFb2b7bf), fontSize: 18.0)),
+                          obscureText: true,
                         ),
                       ),
-                      const SizedBox(
-                        height: 80.0,
+                      SizedBox(
+                        height: 30.0,
                       ),
                       GestureDetector(
-                        onTap: () async {
+                        onTap: () {
                           if (_formkey.currentState!.validate()) {
                             setState(() {
                               email = mailcontroller.text;
@@ -204,77 +168,93 @@ class _SignUpState extends State<SignUp> {
                               password = passwordcontroller.text;
                             });
                           }
-                          await registration();
-                          DataBaseService.collect_userinfo(name: namecontroller.text, email: mailcontroller.text, password: passwordcontroller.text);
+                          registration();
                         },
-                        child: Center(
-                          child: Container(
-                            width: 150,
-                            height: 55,
-                            padding: const EdgeInsets.all(10),
+                        child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 13.0, horizontal: 30.0),
                             decoration: BoxDecoration(
-                                color: const Color.fromRGBO(249, 95, 59, 1),
+                                color: Color(0xFF273671),
                                 borderRadius: BorderRadius.circular(30)),
-                            child: const Center(
+                            child: Center(
                                 child: Text(
-                              "Signup",
+                              "Sign Up",
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold),
-                            )),
-                          ),
-                        ),
+                                  fontSize: 22.0,
+                                  fontWeight: FontWeight.w500),
+                            ))),
                       ),
                     ],
                   ),
                 ),
-
-                /*This line sets the height of the SizedBox to one-sixth (1/6) of the device's screen height. The MediaQuery.of(context).size.height gets the total height of the device's screen, and dividing it by 6 provides a fraction of that height.*/
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 6,
-                ),
-                Row(
-                  children: [
-                    Image.asset(
-                      "assets/Authen/redoval.png",
-                      height: 130,
-                      width: 50,
-                      fit: BoxFit.fill,
+              ),
+              SizedBox(
+                height: 40.0,
+              ),
+              Text(
+                "or LogIn with",
+                style: TextStyle(
+                    color: Color(0xFF273671),
+                    fontSize: 22.0,
+                    fontWeight: FontWeight.w500),
+              ),
+              SizedBox(
+                height: 30.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(
+                    child: Image.asset(
+                      "assets/Authen/google.png",
+                      height: 20,
+                      width: 20,
+                      fit: BoxFit.cover,
                     ),
-                    const Spacer(),
-                    const Text(
-                      "Already Have Account?",
-                      style: TextStyle(color: Colors.white, fontSize: 17.0),
+                  ),
+                  SizedBox(width: 30.0),
+                  Flexible(
+                    child: Image.asset(
+                      "assets/Authen/apple1.png",
+                      height: 30,
+                      width: 30,
+                      fit: BoxFit.cover,
                     ),
-                    const SizedBox(
-                      width: 5.0,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 40.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Already have an account?",
+                      style: TextStyle(
+                          color: Color(0xFF8c8e98),
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w500)),
+                  SizedBox(
+                    width: 5.0,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => LogIn()));
+                    },
+                    child: Text(
+                      "LogIn",
+                      style: TextStyle(
+                          color: Color(0xFF273671),
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w500),
                     ),
-                    GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const LogIn()));
-                        },
-                        child: const Text(
-                          " Login",
-                          style: TextStyle(
-                              color: Color.fromRGBO(249, 95, 59, 1),
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold),
-                        )),
-                    const Spacer(),
-                    Image.asset(
-                      "assets/Authen/design.png",
-                      height: 130,
-                      width: 70,
-                      fit: BoxFit.fill,
-                    ),
-                  ],
-                )
-              ],
-            ),
+                  ),
+                ],
+              )
+            ],
           ),
         ),
       ),

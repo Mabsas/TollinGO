@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:tollin_go/Feature/add_money.dart';
 import 'package:tollin_go/Feature/emergency.dart';
 import 'package:tollin_go/Feature/scan.dart';
+import 'package:tollin_go/Introduction/screenview.dart';
 import 'package:tollin_go/Pages/login.dart';
 import 'package:tollin_go/Pages/signout.dart';
+import 'package:tollin_go/Services/Tracking.dart';
 import 'package:tollin_go/Services/chat.dart';
 import 'package:tollin_go/Services/database.dart';
 import 'package:tollin_go/Services/notify_service.dart';
@@ -74,9 +76,8 @@ class _HomeState extends State<Home> {
               child: Row(
                 children: [
                   IconButton(
-                    icon: Icon(Icons.account_circle ,
-                        color: Colors.white,
-                        size: 40.0),
+                    icon: Icon(Icons.account_circle,
+                        color: Colors.white, size: 40.0),
                     onPressed: () {
                       // Navigate to the NotificationPage when the icon is pressed
                       Navigator.push(
@@ -192,7 +193,12 @@ class _HomeState extends State<Home> {
                     child: Column(
                       children: [
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Track()),
+                            );
+                          },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blueGrey[400],
                           ),
@@ -223,7 +229,8 @@ class _HomeState extends State<Home> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Activity()),
+                              MaterialPageRoute(
+                                  builder: (context) => Activity()),
                             );
                           },
                           style: ElevatedButton.styleFrom(
@@ -256,7 +263,8 @@ class _HomeState extends State<Home> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => CustomizeYourPlan()),
+                              MaterialPageRoute(
+                                  builder: (context) => CustomizeYourPlan()),
                             );
                           },
                           style: ElevatedButton.styleFrom(
@@ -289,7 +297,8 @@ class _HomeState extends State<Home> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => CustomerService()),
+                              MaterialPageRoute(
+                                  builder: (context) => CustomerService()),
                             );
                           },
                           style: ElevatedButton.styleFrom(
@@ -362,10 +371,6 @@ class _HomeState extends State<Home> {
               onPressed: () {},
             ),
             IconButton(
-              icon: const Icon(Icons.explore, size: 30.0),
-              onPressed: () {},
-            ),
-            IconButton(
               icon: const Icon(Icons.message, size: 30.0),
               onPressed: () {
                 Navigator.push(
@@ -379,11 +384,40 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      /*floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add, color: Colors.grey),
+      floatingActionButton: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => screenview(),
+            ),
+          );
+        },
+        child: Container(
+          width: 80.0, // Adjust the width as needed
+          height: 80.0, // Adjust the height as needed
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.white, // Set background color if needed
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                spreadRadius: 2,
+                blurRadius: 5,
+                offset: Offset(0, 3),
+              ),
+            ],
+          ),
+          child: Center(
+            child: Image.asset(
+              'assets/images/aboutus.png', // Replace with the path to your image file with transparent background
+              width: 80.0,
+              height: 80.0,
+            ),
+          ),
+        ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,*/
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
@@ -556,16 +590,6 @@ void _showSettingsMenu(BuildContext context) {
       Offset.zero & overlay.size,
     ),
     items: [
-     /* PopupMenuItem(
-        child: ListTile(
-          leading: const Icon(Icons.dark_mode),
-          title: const Text('Dark Mode'),
-          onTap: () {
-            // Handle dark mode option
-            Navigator.pop(context); // Close the menu
-          },
-        ),
-      ),*/
       PopupMenuItem(
         child: ListTile(
           leading: const Icon(Icons.logout),
